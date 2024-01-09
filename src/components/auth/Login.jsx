@@ -6,16 +6,52 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import { useState } from 'react';
+import axios from 'axios';
+
+const LOGIN_URL = 'http://localhost:3000/api/auth/login';
 
 export default function Login() {
-   const handleSubmit = (event) => {
+   const [authState, setAuthState] = useState({
+      email: 'james@secure.com',
+      password: '123456',
+   });
+
+   /**
+    * function to enter input values to state
+    * @param {*} event
+    */
+   function handleInput(event) {
+      const { name, value } = event.target;
+      console.log('name ===', name);
+      setAuthState({ ...authState, [name]: value });
+   }
+
+   /** jsdoc
+    *
+    * @param {SubmitEvent} event
+    */
+   function handleLogin(event) {
       event.preventDefault();
-      const data = new FormData(event.currentTarget);
-      console.log({
-         email: data.get('email'),
-         password: data.get('password'),
-      });
-   };
+      console.log('js in control');
+
+      // validation
+
+      axios
+         .post(LOGIN_URL, authState)
+         .then((res) => {
+            console.log('res ===', res);
+            const { token } = res.data;
+            console.log('token ===', token);
+            // save token to lS
+            localStorage.setItem('bit_token', token);
+         })
+         .catch((error) => {
+            console.warn('handleLogin ivyko klaida:', error);
+            const errorAxios = error.response.data;
+            console.log('errorAxios ===', errorAxios);
+         });
+   }
 
    return (
       <Container component="main" maxWidth="xs">
@@ -33,11 +69,13 @@ export default function Login() {
             </Typography>
             <Box
                component="form"
-               onSubmit={handleSubmit}
+               onSubmit={handleLogin}
                noValidate
                sx={{ mt: 1 }}
             >
                <TextField
+                  onChange={handleInput}
+                  value={authState.email}
                   margin="normal"
                   required
                   fullWidth
@@ -48,6 +86,8 @@ export default function Login() {
                   autoFocus
                />
                <TextField
+                  onChange={handleInput}
+                  value={authState.email}
                   margin="normal"
                   required
                   fullWidth
