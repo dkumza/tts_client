@@ -29,7 +29,7 @@ export const AdsList = () => {
    return (
       <>
          <h1>All items</h1>
-         <ul className="flex gap-4 py-4">
+         <ul className="flex gap-4 py-4 flex-wrap">
             {ads && ads.map((ad) => <SingleAd key={ad.id} ad={ad} />)}
          </ul>
       </>
