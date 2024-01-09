@@ -1,11 +1,16 @@
 import './App.css';
-import Login from './components/auth/Login';
+import { AdsList } from './components/ads/AdsList';
+import LogIn from './components/auth/LogIn';
+import SignUp from './components/auth/SingUp';
 
 function App() {
    return (
-      <>
-         <Login />
-      </>
+      <div className="min-h-screen container mx-auto">
+         {/* <h1>Hello</h1> */}
+         {/* <LogIn /> */}
+         {/* <SignUp /> */}
+         <AdsList />
+      </div>
    );
 }
 
