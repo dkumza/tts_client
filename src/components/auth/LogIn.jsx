@@ -47,15 +47,15 @@ export default function LogIn({ handleSingIn }) {
    }
 
    return (
-      <div className="flex md:p-36 items-center align-middle justify-center min-w-full min-h-full">
-         <div className="flex flex-col items-center justify-center align-middle mx-auto w-full max-w-md  px-12 py-20 bg-white shadow min-h-full">
-            <h1 className="mb-4 text-2xl">Log in</h1>
-            <form onSubmit={handleLogin} className="w-full">
+      <div className="flex md:p-36 items-center align-middle justify-center min-w-full min-h-full ">
+         <div className="flex flex-col items-center justify-center align-middle mx-auto w-full max-w-md  px-12 py-20 bg-white shadow min-h-full ">
+            <h1 className="mb-4 text-2xl">Login</h1>
+            <form onSubmit={handleLogin} className="w-full ">
                <input
                   onChange={handleInput}
                   value={authState.email}
                   required
-                  className="w-full px-3 py-2 mb-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-stone-500"
+                  className="w-full px-3 py-2 mb-4 border border-gray-300  focus:outline-none focus:ring-2 focus:ring-amber-400"
                   id="email"
                   type="email"
                   placeholder="Email Address"
@@ -67,7 +67,7 @@ export default function LogIn({ handleSingIn }) {
                   onChange={handleInput}
                   value={authState.password}
                   required
-                  className="w-full px-3 py-2 mb-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-stone-500"
+                  className="w-full px-3 py-2 mb-4 border border-gray-300  focus:outline-none focus:ring-2 focus:ring-amber-400"
                   name="password"
                   type="password"
                   id="password"
@@ -76,9 +76,9 @@ export default function LogIn({ handleSingIn }) {
                />
                <button
                   type="submit"
-                  className="w-full py-2 mb-4 text-white bg-stone-800 rounded-md hover:bg-stone-600"
+                  className="w-full py-2 mb-4 text-white font-semibold bg-amber-400  hover:bg-amber-300"
                >
-                  Sign In
+                  Login
                </button>
                <div className="flex justify-end">
                   <a

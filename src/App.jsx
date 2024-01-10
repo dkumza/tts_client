@@ -21,7 +21,7 @@ function App() {
       setUserEmail('');
    };
    return (
-      <div className="min-h-screen container mx-auto">
+      <div className="min-h-screen ">
          <Header
             isUserLogged={isUserLogged}
             userEmail={userEmail}
@@ -31,7 +31,13 @@ function App() {
             <Route path="/" element={<AdsList />} />
             <Route
                path="/login"
-               element={<LogIn handleSingIn={handleSingIn} />}
+               element={
+                  isUserLogged ? (
+                     <AdsList />
+                  ) : (
+                     <LogIn handleSingIn={handleSingIn} />
+                  )
+               }
             />
             <Route path="/signup" element={<SignUp />} />
          </Routes>

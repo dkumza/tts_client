@@ -57,7 +57,7 @@ export default function SignUp() {
                   onChange={handleInput}
                   value={authState.email}
                   required
-                  className="w-full px-3 py-2 mb-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                  className="w-full px-3 py-2 mb-4 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-amber-400"
                   id="email"
                   type="email"
                   placeholder="Email Address"
@@ -69,7 +69,7 @@ export default function SignUp() {
                   onChange={handleInput}
                   value={authState.password}
                   required
-                  className="w-full px-3 py-2 mb-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                  className="w-full px-3 py-2 mb-4 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-amber-400"
                   name="password"
                   type="password"
                   id="password"
@@ -80,7 +80,7 @@ export default function SignUp() {
                   onChange={handleInput}
                   value={authState.repeatPassword}
                   required
-                  className="w-full px-3 py-2 mb-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                  className="w-full px-3 py-2 mb-4 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-amber-400"
                   name="repeatPassword"
                   type="password"
                   id="repeat_password"
@@ -89,14 +89,14 @@ export default function SignUp() {
                />
                <button
                   type="submit"
-                  className="w-full py-2 mb-4 text-white bg-green-500 rounded-md hover:bg-green-600"
+                  className="w-full py-2 mb-4 text-white font-semibold bg-amber-400  hover:bg-amber-300"
                >
                   Sign Up
                </button>
                <div className="flex justify-end">
                   <a
                      href="#"
-                     className="text-sm text-green-500 hover:underline"
+                     className="text-sm text-stone-500 hover:underline"
                   >
                      {'Already have an account? Login'}
                   </a>
