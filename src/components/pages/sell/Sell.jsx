@@ -1,5 +1,6 @@
 import { useFormik } from 'formik';
 import { SellInputForkim } from './SellInputForkim';
+import * as Yup from 'yup';
 
 const newAd = {
    title: 'Edited Post 1',
@@ -21,6 +22,16 @@ const categories = [
       title: 'Phones ',
    },
 ];
+const subCategories = [
+   {
+      cat_id: 1,
+      title: 'Computing',
+   },
+   {
+      cat_id: 2,
+      title: 'Phones ',
+   },
+];
 
 export const Sell = () => {
    const formik = useFormik({
@@ -32,6 +43,10 @@ export const Sell = () => {
          author: '',
          sub_id: '',
       },
+      validationSchema: Yup.object({
+         title: Yup.string().min(3).required('Required'),
+         author: Yup.string().min(3).required('Please fill up sellers name'),
+      }),
       onSubmit: (newObj) => {
          console.log('submited');
          console.log(newObj);
@@ -52,9 +67,10 @@ export const Sell = () => {
                   id={'title'}
                   placeholder={'Title'}
                />
+
                <select
                   id="cat_id"
-                  className="w-full px-3 py-2 mb-4 border border-gray-300  focus:outline-none focus:ring-2 focus:ring-amber-400"
+                  className="w-full px-3 py-2 my-2 border border-gray-300  focus:outline-none focus:ring-2 focus:ring-amber-400"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   value={formik.values.cat_id}
@@ -96,7 +112,7 @@ export const Sell = () => {
 
                <button
                   type="submit"
-                  className="min-w-full py-2 mb-4 text-white font-semibold bg-amber-400  hover:bg-amber-300 w-2/3"
+                  className="min-w-full py-2 my-4 text-white font-semibold bg-amber-400  hover:bg-amber-300 w-2/3"
                >
                   Publish
                </button>
