@@ -27,11 +27,11 @@ export const AdsList = () => {
 
    console.log(ads);
    return (
-      <>
-         <h1>All items</h1>
-         <ul className="flex gap-4 py-4 flex-wrap">
+      <div className="px-4">
+         <h1 className="py-4">All items</h1>
+         <ul className="flex gap-4 pb-4 flex-wrap justify-center">
             {ads && ads.map((ad) => <SingleAd key={ad.id} ad={ad} />)}
          </ul>
-      </>
+      </div>
    );
 };
