@@ -13,9 +13,11 @@ export const SellInputForkim = ({ formik, type, id, placeholder, style }) => {
             value={formik.values.id}
          />
          {formik.touched[id] && formik.errors[id] ? (
-            <p className="text-rose-400 w-full">{formik.errors[id]}</p>
+            <p className="text-rose-400 w-full text-sm h-5">
+               {formik.errors[id]}
+            </p>
          ) : (
-            <p className="py-3"></p>
+            <p className="h-5"></p>
          )}
       </>
    );

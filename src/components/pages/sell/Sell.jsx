@@ -70,7 +70,7 @@ export const Sell = () => {
 
                <select
                   id="cat_id"
-                  className="w-full px-3 py-2 my-2 border border-gray-300  focus:outline-none focus:ring-2 focus:ring-amber-400"
+                  className="w-full px-3 py-2 border border-gray-300  focus:outline-none focus:ring-2 focus:ring-amber-400"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   value={formik.values.cat_id}
@@ -85,8 +85,15 @@ export const Sell = () => {
                         </option>
                      ))}
                </select>
+               {formik.touched.cat_id && formik.errors.cat_id ? (
+                  <p className="text-rose-400 w-full text-sm h-5">
+                     {formik.errors.cat_id}
+                  </p>
+               ) : (
+                  <p className="py-3"></p>
+               )}
                <textarea
-                  className="w-full px-3 py-2 mb-4 border border-gray-300  focus:outline-none focus:ring-2 focus:ring-amber-400"
+                  className="w-full px-3 py-2 border border-gray-300  focus:outline-none focus:ring-2 focus:ring-amber-400"
                   id="content"
                   type="test"
                   placeholder="Short about selling item"
@@ -95,6 +102,13 @@ export const Sell = () => {
                   onBlur={formik.handleBlur}
                   value={formik.values.content}
                />
+               {formik.touched.content && formik.errors.content ? (
+                  <p className="text-rose-400 w-full text-sm h-5">
+                     {formik.errors.content}
+                  </p>
+               ) : (
+                  <p className="py-2"></p>
+               )}
                <SellInputForkim
                   formik={formik}
                   type={'number'}
@@ -112,7 +126,7 @@ export const Sell = () => {
 
                <button
                   type="submit"
-                  className="min-w-full py-2 my-4 text-white font-semibold bg-amber-400  hover:bg-amber-300 w-2/3"
+                  className="min-w-full py-2 my-2 text-white font-semibold bg-amber-400  hover:bg-amber-300 w-2/3"
                >
                   Publish
                </button>
