@@ -1,10 +1,13 @@
+import { Link, NavLink } from 'react-router-dom';
+
 export const Header = () => {
    const menuItems = [
-      { name: 'Computing' },
-      { name: 'Phones' },
-      { name: 'Log In' },
-      { name: 'Sing Up' },
+      { name: 'Computing', to: '/' },
+      { name: 'Phones', to: '/' },
+      { name: 'Log In', to: '/login' },
+      { name: 'Sing Up', to: '/signup' },
    ];
+   console.log(menuItems);
    return (
       <div className="h-12 flex justify-between bg-white shadow">
          <div className="left flex justify-center align-middle items-center">
@@ -12,17 +15,18 @@ export const Header = () => {
                LOGO
             </div>
          </div>
-         <div className="right flex align-middle justify-center items-center hover:cursor-pointer">
+         <nav className="right flex align-middle justify-center items-center hover:cursor-pointer">
             {menuItems &&
                menuItems.map((item, index) => (
-                  <div
+                  <NavLink
                      key={index}
+                     to={item.to}
                      className="w-28 h-full border  flex items-center justify-center"
                   >
                      {item.name}
-                  </div>
+                  </NavLink>
                ))}
-         </div>
+         </nav>
       </div>
    );
 };
