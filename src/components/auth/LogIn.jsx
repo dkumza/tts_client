@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const LOGIN_URL = 'http://localhost:3000/api/auth/login';
 
-export default function LogIn() {
+export default function LogIn({ handleSingIn }) {
    const [authState, setAuthState] = useState({
       email: 'james@secure.com',
       password: '123456',
@@ -32,11 +32,12 @@ export default function LogIn() {
       axios
          .post(LOGIN_URL, authState)
          .then((res) => {
-            console.log('res ===', res);
             const { token } = res.data;
-            console.log('token ===', token);
+            console.log('token: ', token);
             // save token to lS
-            localStorage.setItem('bit_token', token);
+            localStorage.setItem('ads_token', token);
+            console.log(authState.email);
+            handleSingIn(authState.email);
          })
          .catch((error) => {
             console.warn('handleLogin ivyko klaida:', error);
@@ -54,7 +55,7 @@ export default function LogIn() {
                   onChange={handleInput}
                   value={authState.email}
                   required
-                  className="w-full px-3 py-2 mb-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 mb-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-stone-500"
                   id="email"
                   type="email"
                   placeholder="Email Address"
@@ -66,7 +67,7 @@ export default function LogIn() {
                   onChange={handleInput}
                   value={authState.password}
                   required
-                  className="w-full px-3 py-2 mb-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 mb-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-stone-500"
                   name="password"
                   type="password"
                   id="password"
@@ -75,12 +76,15 @@ export default function LogIn() {
                />
                <button
                   type="submit"
-                  className="w-full py-2 mb-4 text-white bg-blue-500 rounded-md hover:bg-blue-600"
+                  className="w-full py-2 mb-4 text-white bg-stone-800 rounded-md hover:bg-stone-600"
                >
                   Sign In
                </button>
                <div className="flex justify-end">
-                  <a href="#" className="text-sm text-blue-500 hover:underline">
+                  <a
+                     href="#"
+                     className="text-sm text-stone-500 hover:underline"
+                  >
                      {"Don't have an account? Sign Up"}
                   </a>
                </div>

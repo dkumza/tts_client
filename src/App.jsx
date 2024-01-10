@@ -8,12 +8,31 @@ import { Route, Routes } from 'react-router-dom';
 
 function App() {
    const [isUserLogged, setIsUserLogged] = useState(false);
+   const [userEmail, setUserEmail] = useState('email');
+
+   const handleSingIn = (email) => {
+      console.log(email);
+      setIsUserLogged(true);
+      setUserEmail(email);
+   };
+
+   const handleLogOut = () => {
+      isUserLogged(false);
+      setUserEmail('');
+   };
    return (
       <div className="min-h-screen container mx-auto">
-         <Header />
+         <Header
+            isUserLogged={isUserLogged}
+            userEmail={userEmail}
+            handleLogOut={handleLogOut}
+         />
          <Routes>
             <Route path="/" element={<AdsList />} />
-            <Route path="/login" element={<LogIn />} />
+            <Route
+               path="/login"
+               element={<LogIn handleSingIn={handleSingIn} />}
+            />
             <Route path="/signup" element={<SignUp />} />
          </Routes>
          {/* <h1>Hello</h1> */}

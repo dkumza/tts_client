@@ -15,7 +15,6 @@ export const AdsList = () => {
          axios
             .get(ADS_URL)
             .then((response) => {
-               console.log('response ===', response);
                const ads = response.data;
                setAds(ads);
             })
@@ -25,7 +24,6 @@ export const AdsList = () => {
       }
    }, []);
 
-   console.log(ads);
    return (
       <div className="px-4">
          <h1 className="py-4">All items</h1>

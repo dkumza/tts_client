@@ -1,6 +1,6 @@
 export const SingleAd = ({ ad }) => {
    return (
-      <li className=" text-md p-4 bg-white min-w-[260px] max-w-[260px] min-h-[380px] flex flex-1 shadow hover:cursor-pointer">
+      <li className="bg-white text-md p-4 min-w-[260px] max-w-[260px] min-h-[380px] flex flex-1 shadow hover:cursor-pointer">
          <div className="div flex flex-col min-w-full  gap-1 ">
             <div className="flex flex-col  justify-between min-w-full flex-1 h-full">
                <div className="img flex flex-col justify-between  h-full">
