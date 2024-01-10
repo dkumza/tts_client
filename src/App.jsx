@@ -5,10 +5,13 @@ import LogIn from './components/auth/LogIn';
 import SignUp from './components/auth/SingUp';
 import { Header } from './components/layout/Header';
 import { Route, Routes } from 'react-router-dom';
+import { useAuthContext } from './store/authContext';
 
 function App() {
    const [isUserLogged, setIsUserLogged] = useState(false);
    const [userEmail, setUserEmail] = useState('email');
+
+   const { isUserLoggedIn } = useAuthContext();
 
    const handleSingIn = (email) => {
       console.log(email);
@@ -32,7 +35,7 @@ function App() {
             <Route
                path="/login"
                element={
-                  isUserLogged ? (
+                  isUserLoggedIn ? (
                      <AdsList />
                   ) : (
                      <LogIn handleSingIn={handleSingIn} />

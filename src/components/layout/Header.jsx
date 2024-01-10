@@ -1,12 +1,8 @@
 import { Link, NavLink } from 'react-router-dom';
+import { useAuthContext } from '../../store/authContext';
 
-export const Header = ({ isUserLogged, userEmail, handleLogOut }) => {
-   console.log(isUserLogged);
-   const menuItems = [
-      //   { name: 'Home', to: '/' },
-      //  { name: 'Computing', to: '/test1' },
-      //  { name: 'Phones', to: '/test2' },
-   ];
+export const Header = () => {
+   const { isUserLoggedIn, logout, userEmail: email } = useAuthContext();
 
    return (
       <div className="h-10 flex justify-center align-middle items-center bg-white shadow">
@@ -19,7 +15,7 @@ export const Header = ({ isUserLogged, userEmail, handleLogOut }) => {
                   LOGO
                </Link>
             </div>
-            {isUserLogged ? (
+            {isUserLoggedIn ? (
                <div className="flex align-middle justify-center items-center  h-full gap-2 text-sm">
                   <NavLink
                      to={'/sell'}
@@ -28,11 +24,11 @@ export const Header = ({ isUserLogged, userEmail, handleLogOut }) => {
                      Sell
                   </NavLink>
                   <div className="px-2 h-full   flex items-center justify-center truncate border-t-2 border-b-2 border-white ">
-                     UserName
+                     {email}
                   </div>
                   <Link
                      to={'/'}
-                     onClick={handleLogOut}
+                     onClick={logout}
                      className="px-4 h-full   flex items-center justify-center truncate border-t-2 border-b-2 border-white hover:border-amber-300 hover:bg-amber-300"
                   >
                      Log Out

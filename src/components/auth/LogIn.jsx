@@ -6,12 +6,12 @@ import { useNavigate } from 'react-router-dom';
 const LOGIN_URL = 'http://localhost:3000/api/auth/login';
 
 export default function LogIn() {
+   const { login } = useAuthContext();
+
    const [authState, setAuthState] = useState({
       email: 'james@secure.com',
       password: '123456',
    });
-
-   const { login } = useAuthContext();
 
    const navigate = useNavigate();
 

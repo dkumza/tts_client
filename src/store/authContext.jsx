@@ -10,13 +10,16 @@ const AuthContext = createContext({
 
 AuthContext.displayName = 'AuthCtx';
 
-export const authCtxProvider = ({ children }) => {
-   const [sessionToken, setSessionToken] = useState(null);
-   const [userEmail, setUserEmail] = useState('');
+export const AuthCtxProvider = ({ children }) => {
+   const tokenFromStorage = localStorage.getItem('session_token');
+   const emailFromStorage = localStorage.getItem('session_email');
+   const [sessionToken, setSessionToken] = useState(tokenFromStorage || null);
+   const [userEmail, setUserEmail] = useState(emailFromStorage || '');
 
    const isUserLoggedIn = !!sessionToken;
 
    function login(token, email) {
+      console.log(token, email);
       setSessionToken(token);
       setUserEmail(email);
       localStorage.setItem('session_token', token);
