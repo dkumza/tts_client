@@ -19,7 +19,6 @@ export const AuthCtxProvider = ({ children }) => {
    const isUserLoggedIn = !!sessionToken;
 
    function login(token, email) {
-      console.log(token, email);
       setSessionToken(token);
       setUserEmail(email);
       localStorage.setItem('session_token', token);
@@ -27,7 +26,8 @@ export const AuthCtxProvider = ({ children }) => {
    }
 
    function logout() {
-      sessionToken(null);
+      console.log('logout');
+      setSessionToken(null);
       setUserEmail('');
       localStorage.removeItem('session_token');
       localStorage.removeItem('session_email');
