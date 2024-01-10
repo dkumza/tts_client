@@ -5,7 +5,7 @@ import SignUp from './components/pages/auth/SingUp';
 import { Header } from './components/layout/Header';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { useAuthContext } from './components/authContext';
-import { Sell } from './components/pages/Sell';
+import { Sell } from './components/pages/sell/Sell';
 
 function App() {
    const { isUserLoggedIn } = useAuthContext();
@@ -25,7 +25,7 @@ function App() {
             />
             <Route
                path="/signup"
-               element={isUserLoggedIn ? <SignUp /> : <Navigate to={'/'} />}
+               element={!isUserLoggedIn ? <SignUp /> : <Navigate to={'/'} />}
             />
          </Routes>
       </div>
