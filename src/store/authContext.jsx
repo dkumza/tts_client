@@ -1,0 +1,48 @@
+import { createContext, useContext, useState } from 'react';
+
+const AuthContext = createContext({
+   login() {},
+   logout() {},
+   isUserLoggedIn: false,
+   token: null,
+   userEmail: '',
+});
+
+AuthContext.displayName = 'AuthCtx';
+
+export const authCtxProvider = ({ children }) => {
+   const [sessionToken, setSessionToken] = useState(null);
+   const [userEmail, setUserEmail] = useState('');
+
+   const isUserLoggedIn = !!sessionToken;
+
+   function login(token, email) {
+      setSessionToken(token);
+      setUserEmail(email);
+      localStorage.setItem('session_token', token);
+      localStorage.setItem('session_email', email);
+   }
+
+   function logout() {
+      sessionToken(null);
+      setUserEmail('');
+      localStorage.removeItem('session_token');
+      localStorage.removeItem('session_email');
+   }
+
+   const ctxValues = {
+      token: sessionToken,
+      isUserLoggedIn,
+      login,
+      logout,
+      userEmail,
+   };
+
+   return (
+      <AuthContext.Provider value={ctxValues}>{children}</AuthContext.Provider>
+   );
+};
+
+export function useAuthContext() {
+   return useContext(AuthContext);
+}

@@ -1,13 +1,19 @@
 import { useState } from 'react';
 import axios from 'axios';
+import { useAuthContext } from '../../store/authContext';
+import { useNavigate } from 'react-router-dom';
 
 const LOGIN_URL = 'http://localhost:3000/api/auth/login';
 
-export default function LogIn({ handleSingIn }) {
+export default function LogIn() {
    const [authState, setAuthState] = useState({
       email: 'james@secure.com',
       password: '123456',
    });
+
+   const { login } = useAuthContext();
+
+   const navigate = useNavigate();
 
    /**
     * function to enter input values to state
@@ -33,11 +39,10 @@ export default function LogIn({ handleSingIn }) {
          .post(LOGIN_URL, authState)
          .then((res) => {
             const { token } = res.data;
-            console.log('token: ', token);
-            // save token to lS
-            localStorage.setItem('ads_token', token);
-            console.log(authState.email);
-            handleSingIn(authState.email);
+            if (token) {
+               login(token, authState.email);
+               navigate('/');
+            }
          })
          .catch((error) => {
             console.warn('handleLogin ivyko klaida:', error);
