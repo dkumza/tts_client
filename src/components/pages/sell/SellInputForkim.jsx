@@ -6,7 +6,7 @@ export const SellInputForkim = ({ formik, type, id, placeholder, style }) => {
       minVal = 1;
    }
    return (
-      <>
+      <div className="flex flex-col w-full">
          <input
             className={`${style} px-3 self-start py-2  border border-gray-300  focus:outline-none focus:ring-2 focus:ring-amber-400`}
             id={id}
@@ -24,6 +24,6 @@ export const SellInputForkim = ({ formik, type, id, placeholder, style }) => {
          ) : (
             <p className="h-5"></p>
          )}
-      </>
+      </div>
    );
 };

@@ -113,24 +113,27 @@ export const Sell = () => {
                ) : (
                   <p className="h-5"></p>
                )}
-               <SellInputForkim
-                  formik={formik}
-                  type={'number'}
-                  id={'price'}
-                  placeholder={'Price'}
-               />
+               <div className="flex w-full gap-6">
+                  <SellInputForkim
+                     style={'w-full'}
+                     formik={formik}
+                     type={'number'}
+                     id={'price'}
+                     placeholder={'Price'}
+                  />
 
-               <SellInputForkim
-                  style={'w-full'}
-                  formik={formik}
-                  type={'text'}
-                  id={'author'}
-                  placeholder={'Seller Name'}
-               />
+                  <SellInputForkim
+                     style={'w-full'}
+                     formik={formik}
+                     type={'text'}
+                     id={'author'}
+                     placeholder={'Seller Name'}
+                  />
+               </div>
 
                <button
                   type="submit"
-                  className="min-w-full py-2 my-2 text-white font-semibold bg-amber-400  hover:bg-amber-300 w-2/3"
+                  className="min-w-full py-2 my-1 text-white font-semibold bg-amber-400  hover:bg-amber-300 w-2/3"
                >
                   Publish
                </button>
