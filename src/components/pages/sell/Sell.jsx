@@ -37,7 +37,7 @@ export const Sell = () => {
    const formik = useFormik({
       initialValues: {
          title: '',
-         cat_id: '',
+         cat_id: 'default',
          content: '',
          price: '',
          author: '',
@@ -66,17 +66,17 @@ export const Sell = () => {
             >
                <select
                   id="cat_id"
-                  className="w-full px-3 py-2 border border-gray-300  focus:outline-none focus:ring-2 focus:ring-amber-400"
+                  className="w-full bg-white px-2 py-2 border border-gray-300  focus:outline-none focus:ring-2 focus:ring-amber-400"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   value={formik.values.cat_id}
                >
-                  <option className="" defaultValue>
+                  <option className="" value={'default'} disabled>
                      Select Category
                   </option>
                   {categories &&
                      categories.map((cat, cat_id) => (
-                        <option key={cat_id} value={cat.cat_id}>
+                        <option className="" key={cat_id} value={cat.cat_id}>
                            {cat.title}
                         </option>
                      ))}
