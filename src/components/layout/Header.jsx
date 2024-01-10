@@ -1,5 +1,5 @@
 import { Link, NavLink } from 'react-router-dom';
-import { useAuthContext } from '../../store/authContext';
+import { useAuthContext } from '../authContext';
 
 export const Header = () => {
    const { isUserLoggedIn, logout, userEmail: email } = useAuthContext();

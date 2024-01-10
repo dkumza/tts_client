@@ -1,11 +1,11 @@
 import './App.css';
-import { AdsList } from './components/ads/AdsList';
-import LogIn from './components/auth/LogIn';
-import SignUp from './components/auth/SingUp';
+import { AdsList } from './components/pages/ads/AdsList';
+import LogIn from './components/pages/auth/LogIn';
+import SignUp from './components/pages/auth/SingUp';
 import { Header } from './components/layout/Header';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { useAuthContext } from './store/authContext';
-import { Sell } from './pages/Sell';
+import { useAuthContext } from './components/authContext';
+import { Sell } from './components/pages/Sell';
 
 function App() {
    const { isUserLoggedIn } = useAuthContext();

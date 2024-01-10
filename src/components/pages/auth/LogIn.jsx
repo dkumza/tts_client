@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
-import { useAuthContext } from '../../store/authContext';
+import { useAuthContext } from '../../authContext';
 import { useNavigate } from 'react-router-dom';
 
 const LOGIN_URL = 'http://localhost:3000/api/auth/login';
