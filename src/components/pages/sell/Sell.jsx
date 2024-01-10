@@ -44,8 +44,12 @@ export const Sell = () => {
          sub_id: '',
       },
       validationSchema: Yup.object({
-         title: Yup.string().min(3).required('Required'),
-         author: Yup.string().min(3).required('Please fill up sellers name'),
+         title: Yup.string()
+            .min(3, '*Title must be at least 3 characters long')
+            .required('*Title is required'),
+         author: Yup.string()
+            .min(3, '*Author name must be at least 3 characters long')
+            .required('*Sellers Name is required'),
       }),
       onSubmit: (newObj) => {
          console.log('submited');
@@ -54,20 +58,12 @@ export const Sell = () => {
    });
    return (
       <div className="px-4  md:px-20 md:p-8 container mx-auto flex flex-col justify-center items-center h-full">
-         <div className="flex w-4/12 min-h-full bg-white px-12 py-14 flex-col">
+         <div className="flex w-4/12 min-h-full bg-white px-12 py-14 flex-col shadow-sm">
             <h1 className="mb-4 text-2xl text-center">Sell Item</h1>
             <form
                className="w-full flex flex-col justify-center items-center"
                onSubmit={formik.handleSubmit}
             >
-               <SellInputForkim
-                  style={'w-full'}
-                  formik={formik}
-                  type={'text'}
-                  id={'title'}
-                  placeholder={'Title'}
-               />
-
                <select
                   id="cat_id"
                   className="w-full px-3 py-2 border border-gray-300  focus:outline-none focus:ring-2 focus:ring-amber-400"
@@ -90,8 +86,16 @@ export const Sell = () => {
                      {formik.errors.cat_id}
                   </p>
                ) : (
-                  <p className="py-3"></p>
+                  <p className="h-5"></p>
                )}
+               <SellInputForkim
+                  style={'w-full'}
+                  formik={formik}
+                  type={'text'}
+                  id={'title'}
+                  placeholder={'Title'}
+               />
+
                <textarea
                   className="w-full px-3 py-2 border border-gray-300  focus:outline-none focus:ring-2 focus:ring-amber-400"
                   id="content"
@@ -107,7 +111,7 @@ export const Sell = () => {
                      {formik.errors.content}
                   </p>
                ) : (
-                  <p className="py-2"></p>
+                  <p className="h-5"></p>
                )}
                <SellInputForkim
                   formik={formik}

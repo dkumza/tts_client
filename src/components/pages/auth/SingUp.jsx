@@ -50,7 +50,7 @@ export default function SignUp() {
 
    return (
       <div className="flex md:p-8 items-center align-middle justify-center min-w-full min-h-full">
-         <div className="flex flex-col items-center justify-center align-middle mx-auto w-full max-w-md  px-12 py-14 bg-white shadow min-h-full">
+         <div className="flex flex-col items-center justify-center align-middle mx-auto w-full max-w-md  px-12 py-14 bg-white shadow-sm min-h-full">
             <h1 className="mb-4 text-2xl">Sign up</h1>
             <form onSubmit={handleLogin} className="w-full">
                <input

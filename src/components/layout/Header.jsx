@@ -5,7 +5,7 @@ export const Header = () => {
    const { isUserLoggedIn, logout, userEmail: email } = useAuthContext();
 
    return (
-      <div className="h-10 flex justify-center align-middle items-center bg-white shadow">
+      <div className="h-10 flex justify-center align-middle items-center bg-white shadow-sm">
          <div className="flex align-middle items-center justify-between bg-white  text-black container mx-auto h-full py-1">
             <div className="left flex justify-center align-middle items-center h-full">
                <Link
