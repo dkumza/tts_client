@@ -4,6 +4,7 @@ import { useAuthContext } from '../../authContext';
 import { CustomInput } from '../../forms/CustomInput';
 import { CustomButton } from '../../forms/CustomButton';
 import axios from 'axios';
+import { useEffect, useState } from 'react';
 
 const newAd = {
    title: 'Edited Post 1',
@@ -37,8 +38,24 @@ const subCategories = [
 ];
 
 const PRODUCTS_URL = 'http://localhost:3000/api/ads';
+const CATs_URL = 'http://localhost:3000/api/categories';
+
 export const Sell = () => {
    const { username } = useAuthContext();
+   const [cats, setCats] = useState(null);
+
+   // fetch categories from API
+   useEffect(() => {
+      axios
+         .get(CATs_URL)
+         .then((res) => {
+            setCats(res.data);
+            console.log(res.data);
+         })
+         .catch((err) => {
+            console.warn('ERROR: ', err);
+         });
+   }, []);
 
    const formik = useFormik({
       initialValues: {
@@ -105,10 +122,14 @@ export const Sell = () => {
                   <option value={0} className="" disabled>
                      Select Category
                   </option>
-                  {categories &&
-                     categories.map((cat, cat_id) => (
-                        <option className="" key={cat_id} value={cat.cat_id}>
-                           {cat.title}
+                  {cats &&
+                     cats.map((cat) => (
+                        <option
+                           className=""
+                           key={cat.cat_id}
+                           value={cat.cat_id}
+                        >
+                           {cat.cat_name}
                         </option>
                      ))}
                </select>
