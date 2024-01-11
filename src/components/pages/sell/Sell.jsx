@@ -2,6 +2,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useAuthContext } from '../../authContext';
 import { CustomInput } from '../../forms/CustomInput';
+import { CustomButton } from '../../forms/CustomButton';
 
 const newAd = {
    title: 'Edited Post 1',
@@ -136,13 +137,13 @@ export const Sell = () => {
                      placeholder={'Price'}
                   />
                </div>
-
-               <button
-                  type="submit"
-                  className="min-w-full py-2 my-1 text-white font-semibold bg-amber-400  hover:bg-amber-300 w-2/3"
-               >
-                  Publish
-               </button>
+               <CustomButton
+                  text={'Publish'}
+                  css={
+                     'w-full text-white font-semibold bg-amber-400  hover:bg-amber-300'
+                  }
+                  type={'submit'}
+               />
             </form>
          </div>
       </div>

@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { CustomInput } from '../../forms/CustomInput';
+import { CustomButton } from '../../forms/CustomButton';
 
 const REG_URL = 'http://localhost:3000/api/auth/register';
 
@@ -15,15 +16,19 @@ export default function SignUp() {
       },
       validationSchema: Yup.object({
          username: Yup.string()
+            .trim()
             .min(3, 'Username must be at least 3 characters long')
             .required('*Username is required'),
          email: Yup.string()
+            .trim()
             .required('*Email is required')
             .email('*Email must be valid email'),
          password: Yup.string()
+            .trim()
             .min(6, '*Password must be at least 6 characters long')
             .required('*Password is required'),
          mPassword: Yup.string()
+            .trim()
             .min(6, '*Password must be at least 6 characters long')
             .test('passwords-match', 'Passwords must match', function (value) {
                return this.parent.password === value;
@@ -88,12 +93,14 @@ export default function SignUp() {
                   id={'mPassword'}
                   placeholder={'Repeat password'}
                />
-               <button
-                  type="submit"
-                  className="w-full py-2 mb-4 text-white font-semibold bg-amber-400  hover:bg-amber-300"
-               >
-                  Sign Up
-               </button>
+               <CustomButton
+                  text={'Sign Up'}
+                  css={
+                     'w-full text-white font-semibold bg-amber-400  hover:bg-amber-300'
+                  }
+                  type={'submit'}
+               />
+
                <div className="flex justify-end">
                   <a
                      href="#"
