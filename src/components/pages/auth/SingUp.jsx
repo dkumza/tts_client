@@ -50,10 +50,9 @@ export default function SignUp() {
             res.status === 201 ? alert(res.data.msg) : null;
          })
          .catch((error) => {
-            console.warn('handleLogin ivyko klaida:', error);
-            const errorAxios = error.response.data;
-            console.log('errorAxios ===', errorAxios);
-            alert(errorAxios.msg);
+            console.warn('axiosLogin:', error);
+            const errorFromAPI = error.response.data;
+            formik.setErrors(errorFromAPI);
          });
    };
 
