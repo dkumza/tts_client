@@ -66,7 +66,7 @@ export const Sell = () => {
          content: '',
          price: '',
          username,
-         date: new Date().toLocaleString('lt-LT', { dateStyle: 'short' }),
+         date: new Date().toLocaleString('lt-LT', { dateCss: 'short' }),
          condition: '',
       },
       validationSchema: Yup.object({
@@ -141,7 +141,7 @@ export const Sell = () => {
                <CustomFormik formik={formik} id={'cat_id'} />
 
                <CustomInput
-                  style={'w-full'}
+                  css={'w-full'}
                   formik={formik}
                   type={'text'}
                   id={'title'}
@@ -162,7 +162,7 @@ export const Sell = () => {
 
                <div className="flex w-full gap-6">
                   <CustomInput
-                     style={'w-full'}
+                     css={'w-full'}
                      formik={formik}
                      type={'number'}
                      id={'price'}

@@ -66,28 +66,28 @@ export default function SignUp() {
             <form onSubmit={formik.handleSubmit} className="w-full ">
                <CustomInput
                   // focus={autoFocus}
-                  style={'w-full'}
+                  css={'w-full'}
                   formik={formik}
                   type={'text'}
                   id={'username'}
                   placeholder={'Username'}
                />
                <CustomInput
-                  style={'w-full'}
+                  css={'w-full'}
                   formik={formik}
                   type={'email'}
                   id={'email'}
                   placeholder={'Email Address'}
                />
                <CustomInput
-                  style={'w-full'}
+                  css={'w-full'}
                   formik={formik}
                   type={'password'}
                   id={'password'}
                   placeholder={'Password'}
                />
                <CustomInput
-                  style={'w-full'}
+                  css={'w-full'}
                   formik={formik}
                   type={'password'}
                   id={'mPassword'}

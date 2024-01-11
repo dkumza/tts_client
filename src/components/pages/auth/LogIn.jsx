@@ -84,7 +84,7 @@ export default function LogIn() {
             <h1 className="mb-4 text-2xl">Login</h1>
             <form onSubmit={formik.handleSubmit} className="w-full ">
                <CustomInput
-                  style={'w-full'}
+                  css={'w-full'}
                   formik={formik}
                   type={'email'}
                   id={'email'}
@@ -92,7 +92,7 @@ export default function LogIn() {
                />
 
                <CustomInput
-                  style={'w-full'}
+                  css={'w-full'}
                   formik={formik}
                   type={'password'}
                   id={'password'}
