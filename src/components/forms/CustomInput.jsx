@@ -1,3 +1,5 @@
+import { CustomFormik } from './CustomFormik';
+
 /* eslint-disable react/prop-types */
 export const CustomInput = ({
    formik,
@@ -19,13 +21,7 @@ export const CustomInput = ({
             onBlur={formik.handleBlur}
             value={formik.values[id]}
          />
-         {formik.touched[id] && formik.errors[id] ? (
-            <p className="text-rose-400 w-full text-xs h-5">
-               {formik.errors[id]}
-            </p>
-         ) : (
-            <p className="h-5"></p>
-         )}
+         <CustomFormik formik={formik} id={id} />
       </div>
    );
 };
