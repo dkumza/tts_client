@@ -14,8 +14,8 @@ export default function LogIn() {
 
    const formik = useFormik({
       initialValues: {
-         email: '',
-         password: '',
+         email: 'james@secure.com',
+         password: '123456',
       },
       validationSchema: Yup.object({
          email: Yup.string()
@@ -72,32 +72,12 @@ export default function LogIn() {
    // function handleLogin(event) {
    //    event.preventDefault();
    //    console.log('js in control');
-
-   //    // validation
-
-   //    axios
-   //       .post(LOGIN_URL, authState)
-   //       .then((res) => {
-   //          console.log(res.data);
-   //          const { token, username } = res.data;
-
-   //          if (token) {
-   //             login(token, username);
-   //             navigate('/');
-   //          }
-   //       })
-   //       .catch((error) => {
-   //          console.warn('handleLogin ivyko klaida:', error);
-   //          const errorAxios = error.response.data;
-   //          console.log('errorAxios ===', errorAxios);
-   //       });
    // }
 
    return (
       <div className="flex md:p-8 items-center align-middle justify-center min-w-full min-h-full ">
          <div className="flex flex-col items-center justify-center align-middle mx-auto w-full max-w-md  px-12 py-14 bg-white shadow-sm min-h-full ">
             <h1 className="mb-4 text-2xl">Login</h1>
-            {/* <form onSubmit={handleLogin} className="w-full "> */}
             <form onSubmit={formik.handleSubmit} className="w-full ">
                <AuthInput
                   style={'w-full'}
