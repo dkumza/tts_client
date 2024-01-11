@@ -40,21 +40,24 @@ export const Sell = () => {
    const formik = useFormik({
       initialValues: {
          title: '',
-         cat_id: '',
+         cat_id: 0,
          content: '',
          price: '',
          username,
          sub_id: '',
       },
       validationSchema: Yup.object({
-         // cat_id: Yup.categories(),
+         cat_id: Yup.number().min(1, '*Select category is required'),
          title: Yup.string()
+            .trim()
             .min(3, '*Title must be at least 3 characters long')
             .required('*Title is required'),
          username: Yup.string()
+            .trim()
             .min(3, '*Username name must be at least 3 characters long')
             .required('*Sellers Name is required'),
          content: Yup.string()
+            .trim()
             .min(6, '*About must be at least 6 characters long')
             .required('*About is required'),
          price: Yup.number()
@@ -82,7 +85,7 @@ export const Sell = () => {
                   onBlur={formik.handleBlur}
                   value={formik.values.cat_id}
                >
-                  <option className="" disabled>
+                  <option value={0} className="" disabled>
                      Select Category
                   </option>
                   {categories &&
@@ -111,7 +114,7 @@ export const Sell = () => {
                   className="w-full px-3 py-2 border border-gray-300  focus:outline-none focus:ring-2 focus:ring-amber-400"
                   id="content"
                   type="test"
-                  placeholder="Short about selling item"
+                  placeholder="More information about selling item"
                   name="content"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
