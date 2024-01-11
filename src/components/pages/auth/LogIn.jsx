@@ -1,46 +1,45 @@
-import { useState } from 'react';
 import axios from 'axios';
 import { useAuthContext } from '../../authContext';
 import { useNavigate } from 'react-router-dom';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+import { AuthInput } from './AuthInputFormik';
 
 const LOGIN_URL = 'http://localhost:3000/api/auth/login';
 
 export default function LogIn() {
    const { login } = useAuthContext();
 
-   const [authState, setAuthState] = useState({
-      email: 'james@secure.com',
-      password: '123456',
-   });
-
    const navigate = useNavigate();
 
-   /**
-    * function to enter input values to state
-    * @param {*} event
-    */
-   function handleInput(event) {
-      const { name, value } = event.target;
-      console.log('name ===', name);
-      setAuthState({ ...authState, [name]: value });
-   }
+   const formik = useFormik({
+      initialValues: {
+         email: '',
+         password: '',
+      },
+      validationSchema: Yup.object({
+         email: Yup.string()
+            .required('*Email is required')
+            .email('*Email must be valid email'),
+         password: Yup.string()
+            .min(6, '*Password must be at least 6 characters long')
+            .required('*Password is required'),
+      }),
+      onSubmit: (loginInfo) => {
+         console.log(loginInfo);
+         axiosLogin(loginInfo);
+      },
+   });
 
-   /** jsdoc
-    *
-    * @param {SubmitEvent} event
-    */
-   function handleLogin(event) {
-      event.preventDefault();
-      console.log('js in control');
-
-      // validation
-
+   const axiosLogin = (loginInfo) => {
       axios
-         .post(LOGIN_URL, authState)
+         .post(LOGIN_URL, loginInfo)
          .then((res) => {
-            const { token } = res.data;
+            console.log(res.data);
+            const { token, username } = res.data;
+
             if (token) {
-               login(token, authState.email);
+               login(token, username);
                navigate('/');
             }
          })
@@ -49,35 +48,71 @@ export default function LogIn() {
             const errorAxios = error.response.data;
             console.log('errorAxios ===', errorAxios);
          });
-   }
+   };
+
+   // const [authState, setAuthState] = useState({
+   //    email: 'james@secure.com',
+   //    password: '123456',
+   // });
+
+   // /**
+   //  * function to enter input values to state
+   //  * @param {*} event
+   //  */
+   // function handleInput(event) {
+   //    const { name, value } = event.target;
+   //    console.log('name ===', name);
+   //    setAuthState({ ...authState, [name]: value });
+   // }
+
+   // /** jsdoc
+   //  *
+   //  * @param {SubmitEvent} event
+   //  */
+   // function handleLogin(event) {
+   //    event.preventDefault();
+   //    console.log('js in control');
+
+   //    // validation
+
+   //    axios
+   //       .post(LOGIN_URL, authState)
+   //       .then((res) => {
+   //          console.log(res.data);
+   //          const { token, username } = res.data;
+
+   //          if (token) {
+   //             login(token, username);
+   //             navigate('/');
+   //          }
+   //       })
+   //       .catch((error) => {
+   //          console.warn('handleLogin ivyko klaida:', error);
+   //          const errorAxios = error.response.data;
+   //          console.log('errorAxios ===', errorAxios);
+   //       });
+   // }
 
    return (
       <div className="flex md:p-8 items-center align-middle justify-center min-w-full min-h-full ">
          <div className="flex flex-col items-center justify-center align-middle mx-auto w-full max-w-md  px-12 py-14 bg-white shadow-sm min-h-full ">
             <h1 className="mb-4 text-2xl">Login</h1>
-            <form onSubmit={handleLogin} className="w-full ">
-               <input
-                  onChange={handleInput}
-                  value={authState.email}
-                  required
-                  className="w-full px-3 py-2 mb-4 border border-gray-300  focus:outline-none focus:ring-2 focus:ring-amber-400"
-                  id="email"
-                  type="email"
-                  placeholder="Email Address"
-                  name="email"
-                  autoComplete="email"
-                  autoFocus
+            {/* <form onSubmit={handleLogin} className="w-full "> */}
+            <form onSubmit={formik.handleSubmit} className="w-full ">
+               <AuthInput
+                  style={'w-full'}
+                  formik={formik}
+                  type={'email'}
+                  id={'email'}
+                  placeholder={'Email Address'}
                />
-               <input
-                  onChange={handleInput}
-                  value={authState.password}
-                  required
-                  className="w-full px-3 py-2 mb-4 border border-gray-300  focus:outline-none focus:ring-2 focus:ring-amber-400"
-                  name="password"
-                  type="password"
-                  id="password"
-                  placeholder="Password"
-                  autoComplete="current-password"
+
+               <AuthInput
+                  style={'w-full'}
+                  formik={formik}
+                  type={'password'}
+                  id={'password'}
+                  placeholder={'Password'}
                />
                <button
                   type="submit"

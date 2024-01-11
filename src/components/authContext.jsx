@@ -5,32 +5,32 @@ const AuthContext = createContext({
    logout() {},
    isUserLoggedIn: false,
    token: null,
-   userEmail: '',
+   username: '',
 });
 
 AuthContext.displayName = 'AuthCtx';
 
 export const AuthCtxProvider = ({ children }) => {
    const tokenFromStorage = localStorage.getItem('session_token');
-   const emailFromStorage = localStorage.getItem('session_email');
+   const usernameFromStorage = localStorage.getItem('session_username');
    const [sessionToken, setSessionToken] = useState(tokenFromStorage || null);
-   const [userEmail, setUserEmail] = useState(emailFromStorage || '');
+   const [username, setUserName] = useState(usernameFromStorage || '');
 
    const isUserLoggedIn = !!sessionToken;
 
-   function login(token, email) {
+   function login(token, username) {
       setSessionToken(token);
-      setUserEmail(email);
+      setUserName(username);
       localStorage.setItem('session_token', token);
-      localStorage.setItem('session_email', email);
+      localStorage.setItem('session_username', username);
    }
 
    function logout() {
       console.log('logout');
       setSessionToken(null);
-      setUserEmail('');
+      setUserName('');
       localStorage.removeItem('session_token');
-      localStorage.removeItem('session_email');
+      localStorage.removeItem('session_username');
    }
 
    const ctxValues = {
@@ -38,7 +38,7 @@ export const AuthCtxProvider = ({ children }) => {
       isUserLoggedIn,
       login,
       logout,
-      userEmail,
+      username,
    };
 
    return (

@@ -2,7 +2,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { useAuthContext } from '../authContext';
 
 export const Header = () => {
-   const { isUserLoggedIn, logout, userEmail: email } = useAuthContext();
+   const { isUserLoggedIn, logout, username } = useAuthContext();
 
    return (
       <div className="h-10 flex justify-center align-middle items-center bg-white shadow-sm">
@@ -24,7 +24,7 @@ export const Header = () => {
                      Sell
                   </NavLink>
                   <div className="px-2 h-full   flex items-center justify-center truncate border-t-2 border-b-2 border-white ">
-                     {email}
+                     {username}
                   </div>
                   <Link
                      to={'/'}
