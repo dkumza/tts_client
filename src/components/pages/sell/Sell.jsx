@@ -53,6 +53,13 @@ export const Sell = () => {
          username: Yup.string()
             .min(3, '*Username name must be at least 3 characters long')
             .required('*Sellers Name is required'),
+         content: Yup.string()
+            .min(6, '*About must be at least 6 characters long')
+            .required('*About is required'),
+         price: Yup.number()
+            .required('*Price is required')
+            .positive('*Price must be a positive number')
+            .integer('*Price must be integer'),
       }),
       onSubmit: (newObj) => {
          console.log('submited');
@@ -85,7 +92,7 @@ export const Sell = () => {
                      ))}
                </select>
                {formik.touched.cat_id && formik.errors.cat_id ? (
-                  <p className="text-rose-400 w-full text-sm h-5">
+                  <p className="text-rose-400 w-full text-xs h-5">
                      {formik.errors.cat_id}
                   </p>
                ) : (
@@ -110,7 +117,7 @@ export const Sell = () => {
                   value={formik.values.content}
                />
                {formik.touched.content && formik.errors.content ? (
-                  <p className="text-rose-400 w-full text-sm h-5">
+                  <p className="text-rose-400 w-full text-xs h-5">
                      {formik.errors.content}
                   </p>
                ) : (

@@ -27,7 +27,8 @@ export default function SignUp() {
             .min(6, '*Password must be at least 6 characters long')
             .test('passwords-match', 'Passwords must match', function (value) {
                return this.parent.password === value;
-            }),
+            })
+            .required('*Password is required'),
       }),
       onSubmit: (signUpInfo) => {
          // destruct mPassword from signUpInfo
@@ -59,7 +60,7 @@ export default function SignUp() {
             <h1 className="mb-4 text-2xl">Sign up</h1>
             <form onSubmit={formik.handleSubmit} className="w-full ">
                <AuthInput
-                  focus={autoFocus}
+                  // focus={autoFocus}
                   style={'w-full'}
                   formik={formik}
                   type={'text'}
