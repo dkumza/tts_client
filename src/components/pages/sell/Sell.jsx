@@ -3,6 +3,7 @@ import * as Yup from 'yup';
 import { useAuthContext } from '../../authContext';
 import { CustomInput } from '../../forms/CustomInput';
 import { CustomButton } from '../../forms/CustomButton';
+import axios from 'axios';
 
 const newAd = {
    title: 'Edited Post 1',
@@ -35,6 +36,7 @@ const subCategories = [
    },
 ];
 
+const PRODUCTS_URL = 'http://localhost:3000/api/ads';
 export const Sell = () => {
    const { username } = useAuthContext();
 
@@ -45,7 +47,7 @@ export const Sell = () => {
          content: '',
          price: '',
          username,
-         sub_id: '',
+         date: new Date().toLocaleString('lt-LT', { dateStyle: 'short' }),
       },
       validationSchema: Yup.object({
          cat_id: Yup.number().min(1, '*Select category is required'),
@@ -66,11 +68,25 @@ export const Sell = () => {
             .positive('*Price must be a positive number')
             .integer('*Price must be integer'),
       }),
-      onSubmit: (newObj) => {
+      onSubmit: (newPoduct) => {
          console.log('submited');
-         console.log(newObj);
+         console.log(newPoduct);
+         axiosNewProduct(newPoduct);
       },
    });
+
+   const axiosNewProduct = (newPoduct) => {
+      axios
+         .post(PRODUCTS_URL, newPoduct)
+         .then((res) => {
+            console.log(res.data);
+         })
+         .catch((error) => {
+            console.warn('axiosLogin:', error);
+            const errorFromAPI = error.response.data;
+            formik.setErrors(errorFromAPI);
+         });
+   };
    return (
       <div className="px-4  md:px-20 md:p-8 container mx-auto flex flex-col justify-center items-center h-full">
          <div className="flex w-full max-w-md min-h-full bg-white px-12 py-14 flex-col shadow-sm">
