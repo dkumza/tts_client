@@ -3,7 +3,7 @@ import { useAuthContext } from '../../authContext';
 import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { AuthInput } from './AuthInputFormik';
+import { CustomInput } from '../../forms/CustomInput';
 
 const LOGIN_URL = 'http://localhost:3000/api/auth/login';
 
@@ -79,7 +79,7 @@ export default function LogIn() {
          <div className="flex flex-col items-center justify-center align-middle mx-auto w-full max-w-md  px-12 py-14 bg-white shadow-sm min-h-full ">
             <h1 className="mb-4 text-2xl">Login</h1>
             <form onSubmit={formik.handleSubmit} className="w-full ">
-               <AuthInput
+               <CustomInput
                   style={'w-full'}
                   formik={formik}
                   type={'email'}
@@ -87,7 +87,7 @@ export default function LogIn() {
                   placeholder={'Email Address'}
                />
 
-               <AuthInput
+               <CustomInput
                   style={'w-full'}
                   formik={formik}
                   type={'password'}

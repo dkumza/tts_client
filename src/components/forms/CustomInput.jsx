@@ -1,5 +1,12 @@
 /* eslint-disable react/prop-types */
-export const AuthInput = ({ formik, type, id, placeholder, style, focus }) => {
+export const CustomInput = ({
+   formik,
+   type,
+   id,
+   placeholder,
+   style,
+   focus,
+}) => {
    return (
       <div className="flex flex-col w-full">
          <input
@@ -10,7 +17,7 @@ export const AuthInput = ({ formik, type, id, placeholder, style, focus }) => {
             placeholder={placeholder}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            value={formik.values.id}
+            value={formik.values[id]}
          />
          {formik.touched[id] && formik.errors[id] ? (
             <p className="text-rose-400 w-full text-xs h-5">

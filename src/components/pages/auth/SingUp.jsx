@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { AuthInput } from './AuthInputFormik';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { CustomInput } from '../../forms/CustomInput';
 
 const REG_URL = 'http://localhost:3000/api/auth/register';
 
@@ -59,7 +59,7 @@ export default function SignUp() {
          <div className="flex flex-col items-center justify-center align-middle mx-auto w-full max-w-md  px-12 py-14 bg-white shadow-sm min-h-full">
             <h1 className="mb-4 text-2xl">Sign up</h1>
             <form onSubmit={formik.handleSubmit} className="w-full ">
-               <AuthInput
+               <CustomInput
                   // focus={autoFocus}
                   style={'w-full'}
                   formik={formik}
@@ -67,21 +67,21 @@ export default function SignUp() {
                   id={'username'}
                   placeholder={'Username'}
                />
-               <AuthInput
+               <CustomInput
                   style={'w-full'}
                   formik={formik}
                   type={'email'}
                   id={'email'}
                   placeholder={'Email Address'}
                />
-               <AuthInput
+               <CustomInput
                   style={'w-full'}
                   formik={formik}
                   type={'password'}
                   id={'password'}
                   placeholder={'Password'}
                />
-               <AuthInput
+               <CustomInput
                   style={'w-full'}
                   formik={formik}
                   type={'password'}

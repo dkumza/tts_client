@@ -1,7 +1,7 @@
 import { useFormik } from 'formik';
-import { SellInputForkim } from './SellInputForkim';
 import * as Yup from 'yup';
 import { useAuthContext } from '../../authContext';
+import { CustomInput } from '../../forms/CustomInput';
 
 const newAd = {
    title: 'Edited Post 1',
@@ -40,13 +40,14 @@ export const Sell = () => {
    const formik = useFormik({
       initialValues: {
          title: '',
-         cat_id: 'default',
+         cat_id: '',
          content: '',
          price: '',
          username,
          sub_id: '',
       },
       validationSchema: Yup.object({
+         // cat_id: Yup.categories(),
          title: Yup.string()
             .min(3, '*Title must be at least 3 characters long')
             .required('*Title is required'),
@@ -81,7 +82,7 @@ export const Sell = () => {
                   onBlur={formik.handleBlur}
                   value={formik.values.cat_id}
                >
-                  <option className="" value={'default'} disabled>
+                  <option className="" disabled>
                      Select Category
                   </option>
                   {categories &&
@@ -98,7 +99,7 @@ export const Sell = () => {
                ) : (
                   <p className="h-5"></p>
                )}
-               <SellInputForkim
+               <CustomInput
                   style={'w-full'}
                   formik={formik}
                   type={'text'}
@@ -124,21 +125,13 @@ export const Sell = () => {
                   <p className="h-5"></p>
                )}
                <div className="flex w-full gap-6">
-                  <SellInputForkim
+                  <CustomInput
                      style={'w-full'}
                      formik={formik}
                      type={'number'}
                      id={'price'}
                      placeholder={'Price'}
                   />
-
-                  {/* <SellInputForkim
-                     style={'w-full'}
-                     formik={formik}
-                     type={'text'}
-                     id={'username'}
-                     placeholder={'Seller Name'}
-                  /> */}
                </div>
 
                <button
