@@ -43,6 +43,7 @@ export default function LogIn() {
 
             if (token) {
                login(token, username);
+               formik.resetForm();
                navigate('/');
             }
          })

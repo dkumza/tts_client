@@ -5,6 +5,8 @@ import { CustomInput } from '../../forms/CustomInput';
 import { CustomButton } from '../../forms/CustomButton';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { CustomRadio } from '../../forms/CustomRadio';
+import { CustomFormik } from '../../forms/CustomFormik';
 
 const newAd = {
    title: 'Edited Post 1',
@@ -50,7 +52,7 @@ export const Sell = () => {
          .get(CATs_URL)
          .then((res) => {
             setCats(res.data);
-            console.log(res.data);
+            // console.log(res.data);
          })
          .catch((err) => {
             console.warn('ERROR: ', err);
@@ -65,6 +67,7 @@ export const Sell = () => {
          price: '',
          username,
          date: new Date().toLocaleString('lt-LT', { dateStyle: 'short' }),
+         condition: '',
       },
       validationSchema: Yup.object({
          cat_id: Yup.number().min(1, '*Select category is required'),
@@ -84,10 +87,11 @@ export const Sell = () => {
             .required('*Price is required')
             .positive('*Price must be a positive number')
             .integer('*Price must be integer'),
+         condition: Yup.string()
+            .required('Condition is required')
+            .oneOf(['new', 'used'], 'Condition must be either "new" or "used"'),
       }),
       onSubmit: (newPoduct) => {
-         console.log('submited');
-         console.log(newPoduct);
          axiosNewProduct(newPoduct);
       },
    });
@@ -97,6 +101,7 @@ export const Sell = () => {
          .post(PRODUCTS_URL, newPoduct)
          .then((res) => {
             console.log(res.data);
+            formik.resetForm();
          })
          .catch((error) => {
             console.warn('axiosLogin:', error);
@@ -114,7 +119,7 @@ export const Sell = () => {
             >
                <select
                   id="cat_id"
-                  className="w-full bg-white px-2 py-2 border border-gray-300  focus:outline-none focus:ring-2 focus:ring-amber-400"
+                  className="w-full appearance-none  bg-white px-2 py-2 border border-gray-300  focus:outline-none focus:ring-2 focus:ring-amber-400"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   value={formik.values.cat_id}
@@ -133,13 +138,8 @@ export const Sell = () => {
                         </option>
                      ))}
                </select>
-               {formik.touched.cat_id && formik.errors.cat_id ? (
-                  <p className="text-rose-400 w-full text-xs h-5">
-                     {formik.errors.cat_id}
-                  </p>
-               ) : (
-                  <p className="h-5"></p>
-               )}
+               <CustomFormik formik={formik} id={'cat_id'} />
+
                <CustomInput
                   style={'w-full'}
                   formik={formik}
@@ -158,13 +158,8 @@ export const Sell = () => {
                   onBlur={formik.handleBlur}
                   value={formik.values.content}
                />
-               {formik.touched.content && formik.errors.content ? (
-                  <p className="text-rose-400 w-full text-xs h-5">
-                     {formik.errors.content}
-                  </p>
-               ) : (
-                  <p className="h-5"></p>
-               )}
+               <CustomFormik formik={formik} id={'content'} />
+
                <div className="flex w-full gap-6">
                   <CustomInput
                      style={'w-full'}
@@ -174,6 +169,13 @@ export const Sell = () => {
                      placeholder={'Price'}
                   />
                </div>
+
+               <div className="flex w-full gap-4 justify-center">
+                  <CustomRadio id={'new'} formik={formik} />
+                  <CustomRadio id={'used'} formik={formik} />
+               </div>
+               <CustomFormik formik={formik} id={'condition'} />
+
                <CustomButton
                   text={'Publish'}
                   css={

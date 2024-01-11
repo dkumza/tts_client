@@ -48,6 +48,7 @@ export default function SignUp() {
          .then((res) => {
             console.log('res ===', res);
             res.status === 201 ? alert(res.data.msg) : null;
+            formik.resetForm();
          })
          .catch((error) => {
             console.warn('axiosLogin:', error);
