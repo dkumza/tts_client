@@ -18,16 +18,16 @@ export default function LogIn() {
          email: 'james@secure.com',
          password: '123456',
       },
-      validationSchema: Yup.object({
-         email: Yup.string()
-            .trim()
-            .required('*Email is required')
-            .email('*Email must be valid email'),
-         password: Yup.string()
-            .trim()
-            .min(6, '*Password must be at least 6 characters long')
-            .required('*Password is required'),
-      }),
+      // validationSchema: Yup.object({
+      //    email: Yup.string()
+      //       .trim()
+      //       .required('*Email is required')
+      //       .email('*Email must be valid email'),
+      //    password: Yup.string()
+      //       .trim()
+      //       .min(6, '*Password must be at least 6 characters long')
+      //       .required('*Password is required'),
+      // }),
       onSubmit: (loginInfo) => {
          console.log(loginInfo);
          axiosLogin(loginInfo);
@@ -47,9 +47,9 @@ export default function LogIn() {
             }
          })
          .catch((error) => {
-            console.warn('handleLogin ivyko klaida:', error);
-            const errorAxios = error.response.data;
-            console.log('errorAxios ===', errorAxios);
+            console.warn('axiosLogin:', error);
+            const errorFromAPI = error.response.data;
+            formik.setErrors(errorFromAPI);
          });
    };
 
