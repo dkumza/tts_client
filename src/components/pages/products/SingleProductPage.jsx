@@ -50,10 +50,13 @@ export const SingleProductPage = () => {
                All Products /
             </Link>
             {productFromAPI && (
-               <p className=" hover:cursor-pointer text-gray-500 hover:text-black">
+               <Link
+                  to={`/products/category/${productFromAPI.cat_id}`}
+                  className=" hover:cursor-pointer text-gray-500 hover:text-black"
+               >
                   {/* {productFromAPI.cat_id} */}
-                  Desktop PCs
-               </p>
+                  To cat {productFromAPI.cat_id}
+               </Link>
             )}
          </div>
          {!productFromAPI && <p>Loading</p>}
