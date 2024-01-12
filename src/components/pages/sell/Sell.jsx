@@ -67,7 +67,7 @@ export const Sell = () => {
          price: '',
          username,
          date: new Date().toLocaleString('lt-LT', { dateCss: 'short' }),
-         condition: '',
+         p_condition: '',
       },
       validationSchema: Yup.object({
          cat_id: Yup.number().min(1, '*Select category is required'),
@@ -87,18 +87,21 @@ export const Sell = () => {
             .required('*Price is required')
             .positive('*Price must be a positive number')
             .integer('*Price must be integer'),
-         condition: Yup.string()
-            .required('Condition is required')
-            .oneOf(['new', 'used'], 'Condition must be either "new" or "used"'),
+         p_condition: Yup.string()
+            .required('*Condition is required')
+            .oneOf(
+               ['new', 'used'],
+               '*Condition must be either "new" or "used"'
+            ),
       }),
-      onSubmit: (newPoduct) => {
-         axiosNewProduct(newPoduct);
+      onSubmit: (newProduct) => {
+         axiosNewProduct(newProduct);
       },
    });
 
-   const axiosNewProduct = (newPoduct) => {
+   const axiosNewProduct = (newProduct) => {
       axios
-         .post(PRODUCTS_URL, newPoduct)
+         .post(PRODUCTS_URL, newProduct)
          .then((res) => {
             console.log(res.data);
             formik.resetForm();
@@ -174,7 +177,7 @@ export const Sell = () => {
                   <CustomRadio id={'new'} formik={formik} />
                   <CustomRadio id={'used'} formik={formik} />
                </div>
-               <CustomFormik formik={formik} id={'condition'} />
+               <CustomFormik formik={formik} id={'p_condition'} />
 
                <CustomButton
                   text={'Publish'}
