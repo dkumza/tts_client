@@ -42,20 +42,32 @@ export const SingleProductPage = () => {
 
    return (
       <div className="container mx-auto min-h-full my-8">
-         <div className="py-2  flex align-middle items-center gap-1">
+         <div className="py-2  flex align-middle items-center">
             <Link
-               className=" hover:cursor-pointer text-gray-500 hover:text-black"
+               className=" hover:cursor-pointer text-gray-700 hover:text-black bg-white pl-2 flex items-center gap-1"
                to={'/'}
             >
-               All Products /
+               <p>All Products</p>
+               <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-chevron-right"
+                  viewBox="0 0 16 16"
+               >
+                  <path
+                     fill-rule="evenodd"
+                     d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"
+                  />
+               </svg>
             </Link>
             {productFromAPI && (
                <Link
                   to={`/products/category/${productFromAPI.cat_id}`}
-                  className=" hover:cursor-pointer text-gray-500 hover:text-black"
+                  className="hover:cursor-pointer text-gray-700 hover:text-black bg-white pl-2 flex items-center gap-1 pr-2"
                >
-                  {/* {productFromAPI.cat_id} */}
-                  To cat {productFromAPI.cat_id}
+                  <p> To cat {productFromAPI.cat_id}</p>
                </Link>
             )}
          </div>
@@ -72,11 +84,11 @@ export const SingleProductPage = () => {
                         />
                      </div>
 
-                     <div className="flex justify-between m-4">
-                        <div className="price text-2xl font-semibold py-2">
+                     <div className="flex justify-between m-4 h-12 items-center">
+                        <div className="price text-3xl font-semibold py-2 text-gray-800">
                            € {productFromAPI.price}
                         </div>
-                        <div className="price text-2xl font-semibold px-6 py-2 bg-amber-400 hover:bg-sky-600 hover:cursor-pointer hover:text-amber-400">
+                        <div className="price text-xl font-semibold px-6 py-2 bg-amber-400 hover:bg-sky-600 hover:cursor-pointer hover:text-amber-400">
                            BUY
                         </div>
                      </div>
