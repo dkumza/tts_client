@@ -1,5 +1,5 @@
 import './App.css';
-import { AdsList } from './components/pages/ads/AdsList';
+import { AdsList } from './components/pages/products/AdsList';
 import LogIn from './components/pages/auth/LogIn';
 import SignUp from './components/pages/auth/SingUp';
 import { Header } from './components/layout/Header';

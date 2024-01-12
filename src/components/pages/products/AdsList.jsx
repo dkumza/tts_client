@@ -25,9 +25,9 @@ export const AdsList = () => {
    }, []);
 
    return (
-      <div className="container mx-auto  md:px-20">
-         <h1 className="py-4">All items</h1>
-         <ul className="flex gap-4 pb-4 flex-wrap justify-center">
+      <div className="container mx-auto">
+         <h1 className="py-4 px-3">All items</h1>
+         <ul className="flex gap-4 pb-4 flex-wrap justify-center items-center">
             {ads && ads.map((ad) => <SingleAd key={ad.id} ad={ad} />)}
          </ul>
       </div>
