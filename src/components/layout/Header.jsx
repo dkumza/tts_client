@@ -12,7 +12,7 @@ export const Header = () => {
             <div className="left flex justify-center align-middle items-center h-full">
                <Link
                   to={'/'}
-                  className="align-middle font-bold bg-amber-400 text-black hover:bg-amber-300 h-full flex w-28 justify-center text-2xl hover:cursor-pointer"
+                  className="align-middle font-bold border-l-2 text-black hover:bg-amber-300 h-full flex w-28 justify-center text-2xl hover:cursor-pointer"
                >
                   LOGO
                </Link>
