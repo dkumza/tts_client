@@ -78,7 +78,7 @@ export const SingleProductPage = () => {
                         </div>
                      </div>
                   </div>
-                  <div className="right w-full border-b-4 border-white flex flex-col gap-4 relative">
+                  <div className="right w-full border-b-4 border-white flex flex-col gap-4 relative justify-start">
                      <div className="title flex flex-col gap-2 justify-start">
                         <h1 className="text-4xl font-semibold text-stone-700">
                            {productFromAPI.title}
@@ -90,7 +90,7 @@ export const SingleProductPage = () => {
                                  className={`${
                                     productFromAPI.p_condition === 'used'
                                        ? 'bg-amber-400'
-                                       : 'bg-lime-500'
+                                       : 'bg-lime-400'
                                  } capitalize w-fit px-4 py-1`}
                               >
                                  {productFromAPI.p_condition}
@@ -139,7 +139,7 @@ export const SingleProductPage = () => {
                         <h1 className="font-semibold py-2">
                            Product information from seller
                         </h1>
-                        <p className="bg-white p-4 text-sm">
+                        <p className="bg-white p-4 text-sm h-full">
                            {/* {productFromAPI.content} */}
                            Lorem ipsum dolor sit amet consectetur adipisicing
                            elit. Molestias error adipisci possimus sequi itaque
@@ -151,19 +151,6 @@ export const SingleProductPage = () => {
                            sequi, voluptatem ipsam?
                         </p>
                      </div>
-                     <div className=" flex w-full justify-end py-4"></div>
-                     {/* <div className="div flex gap-4">
-                           <p className="px-4 py-1 text-amber-400 font-semibold bg-sky-700 hover:bg-sky-600 hover:cursor-pointer">
-                              Desktop PCs
-                           </p>
-                        </div> */}
-                     {/* <div className="comments ">
-                        <h1 className="font-semibold py-2">Comments</h1>
-                        <div className="bg-white p-4">
-                           <h1>One comment</h1>
-                           <p>comment content</p>
-                        </div>
-                     </div> */}
                   </div>
                </div>
             )}
