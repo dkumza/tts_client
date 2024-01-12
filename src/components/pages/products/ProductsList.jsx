@@ -1,10 +1,10 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { SingleAd } from './SingleAd';
+import { SingleProduct } from './SingleProduct';
 
 const ADS_URL = `http://localhost:3000/api/ads`;
 
-export const AdsList = () => {
+export const ProductsList = () => {
    const [ads, setAds] = useState(null);
 
    useEffect(() => {
@@ -24,7 +24,7 @@ export const AdsList = () => {
       <div className="container mx-auto">
          <h1 className="py-4 px-3">All items</h1>
          <ul className="flex gap-4 pb-4 flex-wrap justify-center items-center">
-            {ads && ads.map((ad) => <SingleAd key={ad.id} ad={ad} />)}
+            {ads && ads.map((ad) => <SingleProduct key={ad.id} ad={ad} />)}
          </ul>
       </div>
    );

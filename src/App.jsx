@@ -1,5 +1,5 @@
 import './App.css';
-import { AdsList } from './components/pages/products/AdsList';
+import { ProductsList } from './components/pages/products/ProductsList';
 import LogIn from './components/pages/auth/LogIn';
 import SignUp from './components/pages/auth/SingUp';
 import { Header } from './components/layout/Header';
@@ -15,7 +15,7 @@ function App() {
       <div className="min-h-screen ">
          <Header />
          <Routes>
-            <Route path="/" element={<AdsList />} />
+            <Route path="/" element={<ProductsList />} />
             <Route path="/product/:productID" element={<SingleProductPage />} />
             <Route
                path="/sell"
@@ -23,7 +23,7 @@ function App() {
             />
             <Route
                path="/login"
-               element={isUserLoggedIn ? <AdsList /> : <LogIn />}
+               element={isUserLoggedIn ? <ProductsList /> : <LogIn />}
             />
             <Route
                path="/signup"

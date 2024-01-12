@@ -66,7 +66,7 @@ export const Sell = () => {
          content: '',
          price: '',
          username,
-         date: new Date().toLocaleString('lt-LT', { dateCss: 'short' }),
+         date: new Date().toLocaleString('lt-LT', { dateStyle: 'short' }),
          p_condition: '',
       },
       validationSchema: Yup.object({

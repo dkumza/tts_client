@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-export const SingleAd = ({ ad }) => {
+export const SingleProduct = ({ ad }) => {
    return (
       <Link to={`/product/${ad.id}`}>
          <li className="bg-white text-md min-w-[290px] max-w-[290px] min-h-[400px] flex flex-1 shadow hover:cursor-pointer">
