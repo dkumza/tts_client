@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 const PRODUCT_URL = 'http://localhost:3000/api/products';
 
@@ -32,12 +32,23 @@ export const SingleProductPage = () => {
          });
    }, [productID]);
 
+   let dateDay;
+
+   if (productFromAPI) {
+      dateDay = Math.floor(
+         (new Date() - new Date(productFromAPI.date)) / (1000 * 60 * 60 * 24)
+      );
+   }
+
    return (
       <div className="container mx-auto min-h-full my-8">
          <div className="py-2  flex align-middle items-center gap-1">
-            <p className=" hover:cursor-pointer text-gray-500 hover:text-black">
+            <Link
+               className=" hover:cursor-pointer text-gray-500 hover:text-black"
+               to={'/'}
+            >
                All Products /
-            </p>
+            </Link>
             {productFromAPI && (
                <p className=" hover:cursor-pointer text-gray-500 hover:text-black">
                   {/* {productFromAPI.cat_id} */}
@@ -62,7 +73,7 @@ export const SingleProductPage = () => {
                         <div className="price text-2xl font-semibold py-2">
                            € {productFromAPI.price}
                         </div>
-                        <div className="price text-2xl font-semibold px-6 py-2 bg-amber-400">
+                        <div className="price text-2xl font-semibold px-6 py-2 bg-amber-400 hover:bg-sky-600 hover:cursor-pointer hover:text-amber-400">
                            BUY
                         </div>
                      </div>
@@ -73,24 +84,55 @@ export const SingleProductPage = () => {
                            {productFromAPI.title}
                         </h1>
 
-                        <div className="flex gap-2 text-sm">
-                           <div className="bg-amber-400 px-2">
-                              Listed:{' '}
-                              <span className=" font-medium">
-                                 {Math.floor(
-                                    (new Date() -
-                                       new Date(productFromAPI.date)) /
-                                       (1000 * 60 * 60 * 24)
-                                 )}{' '}
-                                 days ago
-                              </span>
+                        <div className="flex justify-between text-sm">
+                           <div className="flex gap-2 items-center">
+                              <p
+                                 className={`${
+                                    productFromAPI.p_condition === 'used'
+                                       ? 'bg-amber-400'
+                                       : 'bg-lime-500'
+                                 } capitalize w-fit px-4 py-1`}
+                              >
+                                 {productFromAPI.p_condition}
+                              </p>
+                              <div
+                                 className={`${
+                                    dateDay > 30
+                                       ? 'bg-amber-400'
+                                       : 'bg-lime-400'
+                                 } px-2 py-1`}
+                              >
+                                 <span className="font-medium">
+                                    {dateDay === 0
+                                       ? 'Listed: Today'
+                                       : `Listed: ${dateDay} days ago`}
+                                 </span>
+                              </div>
+                              <p className="py-1">
+                                 By{' '}
+                                 <span className="bg-white ml-1 px-2 font-medium py-1">
+                                    {productFromAPI.username}
+                                 </span>
+                              </p>
                            </div>
-                           <p className="">
-                              By{' '}
-                              <span className="bg-white ml-1 px-2 font-medium">
-                                 {productFromAPI.username}
-                              </span>
-                           </p>
+                           {/* <div className="wishlist px-4 py-2 hover:text-amber-400 border font-semibold shadow border-amber-400 bg-white hover:cursor-pointer flex items-center gap-2">
+                              <div className="text-rose-400">
+                                 <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="16"
+                                    height="16"
+                                    fill="currentColor"
+                                    className="bi bi-heart-fill"
+                                    viewBox="0 0 16 16"
+                                 >
+                                    <path
+                                       fillRule="evenodd"
+                                       d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"
+                                    />
+                                 </svg>
+                              </div>
+                              <p>Wishlist</p>
+                           </div> */}
                         </div>
                      </div>
                      <div className="about justify-end ">
@@ -98,38 +140,23 @@ export const SingleProductPage = () => {
                            Product information from seller
                         </h1>
                         <p className="bg-white p-4 text-sm">
-                           {productFromAPI.content}
+                           {/* {productFromAPI.content} */}
+                           Lorem ipsum dolor sit amet consectetur adipisicing
+                           elit. Molestias error adipisci possimus sequi itaque
+                           dolorum eveniet sed doloremque sunt autem culpa ullam
+                           repellat provident, laboriosam quibusdam impedit nemo
+                           repellendus consequuntur asperiores dolor eum,
+                           dolores quo voluptate libero! Mollitia eius soluta
+                           molestias rem impedit dolore, sunt saepe laudantium,
+                           sequi, voluptatem ipsam?
                         </p>
                      </div>
-                     <div className="absolute bottom-0 right-0 flex w-full justify-between py-4">
-                        <div className="wishlist px-4 py-1 text-amber-400 font-semibold bg-sky-700 hover:bg-sky-600 hover:cursor-pointer flex items-center gap-2">
-                           <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="16"
-                              height="16"
-                              fill="currentColor"
-                              className="bi bi-heart"
-                              viewBox="0 0 16 16"
-                           >
-                              <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15" />
-                           </svg>
-                           <p>Wishlist</p>
-                        </div>
-                        <div className="div flex gap-4">
-                           <p
-                              className={`${
-                                 productFromAPI.p_condition === 'used'
-                                    ? 'bg-amber-400'
-                                    : 'bg-lime-500'
-                              } capitalize w-fit px-4 py-1`}
-                           >
-                              {productFromAPI.p_condition}
-                           </p>
+                     <div className=" flex w-full justify-end py-4"></div>
+                     {/* <div className="div flex gap-4">
                            <p className="px-4 py-1 text-amber-400 font-semibold bg-sky-700 hover:bg-sky-600 hover:cursor-pointer">
                               Desktop PCs
                            </p>
-                        </div>
-                     </div>
+                        </div> */}
                      {/* <div className="comments ">
                         <h1 className="font-semibold py-2">Comments</h1>
                         <div className="bg-white p-4">
