@@ -8,20 +8,16 @@ export const AdsList = () => {
    const [ads, setAds] = useState(null);
 
    useEffect(() => {
-      // if token tada
-      getPosts(ADS_URL);
-
-      function getPosts(ADS_URL) {
-         axios
-            .get(ADS_URL)
-            .then((response) => {
-               const ads = response.data;
-               setAds(ads);
-            })
-            .catch((error) => {
-               console.log('error ===', error);
-            });
-      }
+      // TODO token
+      axios
+         .get(ADS_URL)
+         .then((response) => {
+            const ads = response.data;
+            setAds(ads);
+         })
+         .catch((error) => {
+            console.log('error ===', error);
+         });
    }, []);
 
    return (

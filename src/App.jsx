@@ -6,6 +6,7 @@ import { Header } from './components/layout/Header';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { useAuthContext } from './components/authContext';
 import { Sell } from './components/pages/sell/Sell';
+import { SingleProductPage } from './components/pages/products/SingleProductPage';
 
 function App() {
    const { isUserLoggedIn } = useAuthContext();
@@ -15,6 +16,7 @@ function App() {
          <Header />
          <Routes>
             <Route path="/" element={<AdsList />} />
+            <Route path="/product/:productID" element={<SingleProductPage />} />
             <Route
                path="/sell"
                element={isUserLoggedIn ? <Sell /> : <Navigate to={'/'} />}
