@@ -2,9 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-.active {
+/* .active {
    border-bottom: 2px solid #fcd34d;
-}
+} */
 
 @layer base {
    /* Chrome, Safari, Edge, Opera */
@@ -17,4 +17,8 @@
    input[type='number'] {
       -moz-appearance: textfield;
    }
+}
+
+.login-menu-items {
+   @apply w-36 px-4 h-full flex items-center justify-center truncate border-t-2 border-b-2 hover:border-stone-200 border-amber-400 bg-amber-400 hover:bg-sky-700 hover:text-amber-400 hover:cursor-pointer;
 }

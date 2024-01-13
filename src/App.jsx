@@ -8,13 +8,22 @@ import { useAuthContext } from './components/authContext';
 import { Sell } from './components/pages/sell/Sell';
 import { SingleProductPage } from './components/pages/products/SingleProductPage';
 import { ProductsByCategoryList } from './components/pages/products/ProductsByCategoryList';
+import { UserMenuHeader } from './components/dropDownMenus/UserMenuHeader';
+import { useState } from 'react';
 
 function App() {
    const { isUserLoggedIn } = useAuthContext();
+   const [clickedMenu, setClickedMenu] = useState(false);
 
    return (
       <div className="min-h-screen ">
-         <Header />
+         <Header setClickedMenu={setClickedMenu} />
+         {isUserLoggedIn && clickedMenu && (
+            <UserMenuHeader
+               setClickedMenu={setClickedMenu}
+               clickedMenu={clickedMenu}
+            />
+         )}
          <Routes>
             <Route path="/" element={<ProductsList />} />
             <Route
