@@ -23,20 +23,38 @@ export const SingleProduct = ({ ad }) => {
                      />
                   </div>
                   <div className="flex w-full flex-col justify-between align-middle items-start p-6">
-                     <div className="title flex flex-col gap-2">
-                        <div className="title text-xs flex gap-2 items-center">
-                           <div className="bg-amber-400 rounded text-black px-2 py-1 capitalize">
-                              {ad.p_condition}
+                     <div className="title flex flex-col gap-2 w-full">
+                        <div className="title text-xs flex gap-2 items-center justify-between w-full">
+                           <div className="flex gap-2 items-center w-full">
+                              <div className="bg-amber-400 rounded text-black px-2 py-1 capitalize">
+                                 {ad.p_condition}
+                              </div>
+                              <Link
+                                 to={`/products/category/${ad.cat_id}`}
+                                 className="bg-sky-300 px-2 py-1 text-black rounded"
+                              >
+                                 {/* {ad.cat_id} */} Desktop Pcs
+                              </Link>
+                              <div
+                                 className={`${
+                                    dateDay > 30
+                                       ? 'bg-amber-400'
+                                       : 'bg-lime-400'
+                                 } px-2 py-1 rounded`}
+                              >
+                                 <span className="font-medium">
+                                    {dateDay === 0
+                                       ? 'Listed: Today'
+                                       : `Listed: ${dateDay} days ago`}
+                                 </span>
+                              </div>
                            </div>
-
-                           <div className="bg-lime-400 px-2 py-1 text-black rounded">
-                              {/* {ad.cat_id} */} Home Pcs
+                           <div className="w-full text-right">
+                              by {ad.username}
                            </div>
-                           <div className="">Added: {dateDay} ago</div>
-                           <div className="">by {ad.username}</div>
                         </div>
                         <div className="title flex flex-col gap-2">
-                           <h1 className="text-xl font-semibold">{ad.title}</h1>
+                           <h1 className="text-md font-semibold">{ad.title}</h1>
                            <p className="text-sm">{ad.content}</p>
                         </div>
                      </div>
