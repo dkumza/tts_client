@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useAuthContext } from '../../authContext';
+import { useAuthContext } from '../../contexts/authContext';
 import { Link, useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';

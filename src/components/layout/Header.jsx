@@ -1,5 +1,5 @@
 import { Link, NavLink } from 'react-router-dom';
-import { useAuthContext } from '../authContext';
+import { useAuthContext } from '../contexts/authContext';
 import Search from '../forms/Search';
 
 export const Header = ({ setClickedMenu }) => {
@@ -65,6 +65,9 @@ export const Header = ({ setClickedMenu }) => {
                <div className="flex align-middle justify-center items-center  gap-2 text-sm">
                   <NavLink to={'/login'} className="login-menu-items">
                      Login
+                  </NavLink>
+                  <NavLink to={'/signup'} className="login-menu-items">
+                     Sign Up
                   </NavLink>
                </div>
             )}

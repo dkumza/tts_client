@@ -1,6 +1,6 @@
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { useAuthContext } from '../../authContext';
+import { useAuthContext } from '../../contexts/authContext';
 import { CustomInput } from '../../forms/CustomInput';
 import { CustomButton } from '../../forms/CustomButton';
 import axios from 'axios';

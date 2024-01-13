@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useAuthContext } from '../authContext';
+import { useAuthContext } from '../contexts/authContext';
 import { useEffect, useRef } from 'react';
 
 export const UserMenuHeader = ({ clickedMenu, setClickedMenu }) => {

@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { SingleProduct } from './SingleProduct';
 
-const ADS_URL = `http://localhost:3000/api/ads`;
+const ADS_URL = `http://localhost:3000/api/products`;
 
 export const ProductsList = () => {
    const [ads, setAds] = useState(null);

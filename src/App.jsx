@@ -4,7 +4,7 @@ import LogIn from './components/pages/auth/LogIn';
 import SignUp from './components/pages/auth/SingUp';
 import { Header } from './components/layout/Header';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { useAuthContext } from './components/authContext';
+import { useAuthContext } from './components/contexts/authContext';
 import { Sell } from './components/pages/sell/Sell';
 import { SingleProductPage } from './components/pages/products/SingleProductPage';
 import { ProductsByCategoryList } from './components/pages/products/ProductsByCategoryList';
