@@ -61,8 +61,12 @@ export default function SignUp() {
    const autoFocus = true; // for autoFocus prop
 
    return (
-      <div className="flex md:p-8 items-center align-middle justify-center min-w-full min-h-full">
-         <div className="flex flex-col items-center justify-center align-middle mx-auto w-full max-w-md  px-12 py-14 bg-white shadow-sm min-h-full">
+      <div className="flex md:p-20 items-center align-middle justify-center min-w-full min-h-full text-white">
+         <div
+            style={{ backgroundColor: '#202020' }}
+            className="flex flex-col rounded-lg items-center justify-center align-middle mx-auto w-full max-w-md  px-12 py-14 shadow-sm min-h-full "
+         >
+            {' '}
             <h1 className="mb-4 text-2xl">Sign up</h1>
             <form onSubmit={formik.handleSubmit} className="w-full ">
                <CustomInput
@@ -97,7 +101,7 @@ export default function SignUp() {
                <CustomButton
                   text={'Sign Up'}
                   css={
-                     'w-full text-white font-semibold bg-amber-400  hover:bg-amber-300'
+                     'w-full text-white font-semibold bg-amber-500  hover:bg-amber-400'
                   }
                   type={'submit'}
                />

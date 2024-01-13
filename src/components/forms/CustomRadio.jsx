@@ -8,8 +8,8 @@ export const CustomRadio = ({ id, formik }) => {
          onClick={() => {
             formik.setFieldValue('condition', id);
          }}
-         className={`border text-center capitalize w-full text-gray-600 cursor-pointer py-2 px-4 ${
-            formik.values.condition === id ? 'bg-amber-300' : 'bg-white'
+         className={`border rounded text-center capitalize w-full text-gray-600 cursor-pointer py-2 px-4 ${
+            formik.values.condition === id ? 'bg-amber-400' : 'bg-white'
          }`}
       >
          {id}

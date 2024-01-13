@@ -113,8 +113,11 @@ export const Sell = () => {
          });
    };
    return (
-      <div className="px-4  md:px-20 md:p-8 container mx-auto flex flex-col justify-center items-center h-full">
-         <div className="flex w-full max-w-md min-h-full bg-white px-12 py-14 flex-col shadow-sm">
+      <div className="flex md:p-20 items-center align-middle justify-center min-w-full min-h-full text-white">
+         <div
+            style={{ backgroundColor: '#202020' }}
+            className="flex flex-col rounded-lg items-center justify-center align-middle mx-auto w-full max-w-md  px-12 py-14 shadow-sm min-h-full "
+         >
             <h1 className="mb-4 text-2xl text-center">Sell Item</h1>
             <form
                className="w-full flex flex-col justify-center items-center"
@@ -122,7 +125,7 @@ export const Sell = () => {
             >
                <select
                   id="cat_id"
-                  className="w-full appearance-none  bg-white px-2 py-2 border border-gray-300  focus:outline-none focus:ring-2 focus:ring-amber-400"
+                  className="w-full appearance-none text-black bg-white px-2 py-2 border border-gray-300  focus:outline-none focus:ring-2 focus:ring-amber-400"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   value={formik.values.cat_id}
@@ -152,7 +155,7 @@ export const Sell = () => {
                />
 
                <textarea
-                  className="w-full px-3 py-2 border border-gray-300  focus:outline-none focus:ring-2 focus:ring-amber-400"
+                  className="w-full px-3 text-black rounded py-2 border border-gray-300  focus:outline-none focus:ring-2 focus:ring-amber-400"
                   id="content"
                   type="test"
                   placeholder="More information about selling item"
@@ -182,7 +185,7 @@ export const Sell = () => {
                <CustomButton
                   text={'Publish'}
                   css={
-                     'w-full text-white font-semibold bg-amber-400  hover:bg-amber-300'
+                     'w-full text-white font-semibold bg-amber-500  hover:bg-amber-400'
                   }
                   type={'submit'}
                />

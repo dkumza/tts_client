@@ -79,9 +79,12 @@ export default function LogIn() {
    // }
 
    return (
-      <div className="flex md:p-8 items-center align-middle justify-center min-w-full min-h-full ">
-         <div className="flex flex-col items-center justify-center align-middle mx-auto w-full max-w-md  px-12 py-14 bg-white shadow-sm min-h-full ">
-            <h1 className="mb-4 text-2xl">Login</h1>
+      <div className="flex md:p-20 items-center align-middle justify-center min-w-full min-h-full text-white">
+         <div
+            style={{ backgroundColor: '#202020' }}
+            className="flex flex-col rounded-lg items-center justify-center align-middle mx-auto w-full max-w-md  px-12 py-14 shadow-sm min-h-full "
+         >
+            <h1 className="mb-4 text-2xl">Sign In</h1>
             <form onSubmit={formik.handleSubmit} className="w-full ">
                <CustomInput
                   css={'w-full'}
@@ -99,20 +102,20 @@ export default function LogIn() {
                   placeholder={'Password'}
                />
                <CustomButton
-                  text={'Login'}
+                  text={'Sign In'}
                   css={
-                     'w-full text-white font-semibold bg-amber-400  hover:bg-amber-300'
+                     'w-full text-white font-semibold bg-amber-500  hover:bg-amber-400'
                   }
                   type={'submit'}
                />
-               <div className="flex justify-end">
-                  <Link
-                     to={'/signup'}
-                     className="text-sm text-stone-500 hover:underline"
-                  >
-                     {"Don't have an account? Sign Up"}
-                  </Link>
-               </div>
+               <div className="flex justify-center mb-3">OR</div>
+
+               <Link
+                  className="w-full rounded flex justify-center text-white font-semibold bg-amber-500  hover:bg-amber-400 py-2 mb-4"
+                  to={'/signup'}
+               >
+                  Sing Up
+               </Link>
             </form>
          </div>
       </div>
