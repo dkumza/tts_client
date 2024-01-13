@@ -1,5 +1,6 @@
 import { Link, NavLink } from 'react-router-dom';
 import { useAuthContext } from '../authContext';
+import { Search } from '../forms/Search';
 
 export const Header = ({ setClickedMenu }) => {
    const { isUserLoggedIn, username } = useAuthContext();
@@ -10,23 +11,24 @@ export const Header = ({ setClickedMenu }) => {
    };
 
    return (
-      <div className="h-10 flex justify-center align-middle items-center bg-white shadow-sm">
+      <div className="h-14 flex justify-center align-middle items-center bg-white shadow-sm">
          <div className="flex align-middle items-center justify-between bg-white  text-black container mx-auto h-full py-1">
             <div className="left flex justify-center align-middle items-center h-full">
                <Link
                   to={'/'}
-                  className="align-middle font-bold border-l-2 text-black hover:bg-amber-300 h-full flex w-28 justify-center text-2xl hover:cursor-pointer"
+                  className="align-middle items-center font-bold border-l-2 text-black hover:bg-amber-300 h-full flex w-28 justify-center text-2xl hover:cursor-pointer"
                >
                   LOGO
                </Link>
             </div>
+            <Search />
             {isUserLoggedIn ? (
                <div className="flex align-middle justify-center items-center  h-full gap-2 text-sm">
                   <NavLink
                      to={'/sell'}
-                     className="w-36 px-4 h-full flex items-center justify-center truncate border-t-2 border-b-2 hover:border-stone-200 border-lime-400 bg-lime-400 hover:bg-sky-700 hover:text-amber-400"
+                     className="w-36 py-1  px-4  flex items-center justify-center truncate border-t-2 border-b-2 hover:border-stone-200 border-lime-400 bg-lime-400 hover:bg-sky-700 hover:text-amber-400"
                   >
-                     Sell Item{' '}
+                     Sell Item
                      <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="16"
@@ -41,7 +43,7 @@ export const Header = ({ setClickedMenu }) => {
 
                   <div
                      id="name"
-                     className="w-36 border font-semibold px-4 h-full flex items-center gap-1 justify-center truncate border-t-2 border-b-2 hover:border-stone-200 border-amber-400 bg-amber-400 hover:bg-sky-700 hover:text-amber-400 hover:cursor-pointer"
+                     className="w-36 border  px-4 py-1 flex items-center gap-1 justify-center truncate border-t-2 border-b-2 hover:border-stone-200 border-amber-400 bg-amber-400 hover:bg-sky-700 hover:text-amber-400 hover:cursor-pointer"
                      onClick={handleMenuClick}
                   >
                      {username}
@@ -62,12 +64,9 @@ export const Header = ({ setClickedMenu }) => {
                   </div>
                </div>
             ) : (
-               <div className="flex align-middle justify-center items-center  h-full gap-2 text-sm">
+               <div className="flex align-middle justify-center items-center  gap-2 text-sm">
                   <NavLink to={'/login'} className="login-menu-items">
                      Login
-                  </NavLink>
-                  <NavLink to={'/signup'} className="login-menu-items">
-                     Sign Up
                   </NavLink>
                </div>
             )}

@@ -3,6 +3,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { CustomInput } from '../../forms/CustomInput';
 import { CustomButton } from '../../forms/CustomButton';
+import { Link } from 'react-router-dom';
 
 const REG_URL = 'http://localhost:3000/api/auth/register';
 
@@ -102,12 +103,12 @@ export default function SignUp() {
                />
 
                <div className="flex justify-end">
-                  <a
-                     href="#"
+                  <Link
+                     to={'/login'}
                      className="text-sm text-stone-500 hover:underline"
                   >
                      {'Already have an account? Login'}
-                  </a>
+                  </Link>
                </div>
             </form>
          </div>

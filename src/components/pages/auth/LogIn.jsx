@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useAuthContext } from '../../authContext';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { CustomInput } from '../../forms/CustomInput';
@@ -106,12 +106,12 @@ export default function LogIn() {
                   type={'submit'}
                />
                <div className="flex justify-end">
-                  <a
-                     href="#"
+                  <Link
+                     to={'/signup'}
                      className="text-sm text-stone-500 hover:underline"
                   >
                      {"Don't have an account? Sign Up"}
-                  </a>
+                  </Link>
                </div>
             </form>
          </div>
