@@ -21,9 +21,9 @@ export const ProductsList = () => {
    }, []);
 
    return (
-      <div className="container mx-auto my-8">
+      <div className="container mx-auto py-8 min-w-full">
          {/* <h1 className="py-4 px-3">All items</h1> */}
-         <ul className="flex gap-4 pb-4 flex-wrap justify-center items-center">
+         <ul className="flex gap-4 pb-4 flex-col min-w-full justify-center items-center">
             {ads && ads.map((ad) => <SingleProduct key={ad.id} ad={ad} />)}
          </ul>
       </div>
