@@ -4,13 +4,13 @@ const Search = () => {
          <input
             className="focus:outline-none w-full px-3"
             type="text"
-            placeholder="Search"
+            placeholder="Search for product"
          />
          <div className="border px-4 py-1 bg-amber-400 hover:cursor-pointer hover:bg-sky-700 hover:text-amber-400">
             <svg
                xmlns="http://www.w3.org/2000/svg"
-               width="16"
-               height="16"
+               width="18"
+               height="18"
                fill="currentColor"
                className="bi bi-search"
                viewBox="0 0 16 16"
