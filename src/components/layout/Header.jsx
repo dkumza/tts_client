@@ -1,6 +1,6 @@
 import { Link, NavLink } from 'react-router-dom';
 import { useAuthContext } from '../authContext';
-import { Search } from '../forms/Search';
+import Search from '../forms/Search';
 
 export const Header = ({ setClickedMenu }) => {
    const { isUserLoggedIn, username } = useAuthContext();
@@ -11,7 +11,7 @@ export const Header = ({ setClickedMenu }) => {
    };
 
    return (
-      <div className="h-14 flex justify-center align-middle items-center bg-white shadow-sm">
+      <div className="h-14 flex justify-center align-middle items-center bg-white shadow-sm relative">
          <div className="flex align-middle items-center justify-between bg-white  text-black container mx-auto h-full py-1">
             <div className="left flex justify-center align-middle items-center h-full">
                <Link
