@@ -28,9 +28,19 @@ export const ProductsList = () => {
             {ads && ads.map((ad) => <SingleProduct key={ad.id} ad={ad} />)}
          </ul>
          <div className="flex flex-col gap-8 w-full h-fit p-8 text-center bg-stone-100 rounded">
-            <div className="flex gap-2">
+            <div className="flex gap-2 items-center">
                <h1 className="font-semibold">Sort:</h1>
-               <p>Recent</p>
+               <p className="hover:cursor-pointer hover:underline">Recent</p>
+               <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-caret-down-fill"
+                  viewBox="0 0 16 16"
+               >
+                  <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+               </svg>
             </div>
             <div className="flex flex-col text-left gap-1 text-md text-stone-600">
                <h1 className="font-semibold text-base text-black">
