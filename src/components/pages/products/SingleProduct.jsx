@@ -9,7 +9,7 @@ export const SingleProduct = ({ ad }) => {
       );
    }
    return (
-      <li className="bg-stone-100 hover:bg-gray-50 rounded text-md min-w-[970px]  min-h-[184px] flex shadow">
+      <li className="bg-stone-100 hover:bg-gray-50 rounded text-md container  min-h-[184px] max-h-[184px] flex shadow">
          <div className="div flex min-w-full  gap-1 ">
             <div className="flex min-w-full flex-1 h-full">
                <div className="img flex flex-col justify-between  h-full">
@@ -19,7 +19,7 @@ export const SingleProduct = ({ ad }) => {
                      alt={ad.title}
                   />
                </div>
-               <div className="flex w-full flex-col justify-between align-middle items-start p-6">
+               <div className="flex w-full flex-col justify-between align-middle items-start px-6 py-4">
                   <div className="title flex flex-col gap-2 w-full">
                      <div className="title text-xs flex gap-2 items-center justify-between w-full">
                         <div className="flex gap-2 items-center w-full">
