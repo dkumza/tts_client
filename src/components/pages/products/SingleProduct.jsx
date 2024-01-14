@@ -1,8 +1,6 @@
 import { Link } from 'react-router-dom';
 
 export const SingleProduct = ({ ad }) => {
-   console.log(ad);
-
    let dateDay;
 
    if (ad) {
@@ -14,9 +12,9 @@ export const SingleProduct = ({ ad }) => {
       <li className="bg-stone-100 hover:bg-gray-50 rounded text-md min-w-[970px]  min-h-[184px] flex shadow">
          <div className="div flex min-w-full  gap-1 ">
             <div className="flex min-w-full flex-1 h-full">
-               <div className="img flex flex-col justify-between  h-full border">
+               <div className="img flex flex-col justify-between  h-full">
                   <img
-                     className="border h-full min-w-[352px]  border-red-200"
+                     className="border-r h-full min-w-[352px]"
                      src=""
                      alt={ad.title}
                   />
@@ -46,9 +44,9 @@ export const SingleProduct = ({ ad }) => {
                               </span>
                            </div>
                         </div>
-                        <div className="w-full text-right">
+                        {/* <div className="w-full text-right">
                            by {ad.username}
-                        </div>
+                        </div> */}
                      </div>
                      <div className="title flex flex-col gap-2">
                         <h1 className="text-md font-semibold">{ad.title}</h1>

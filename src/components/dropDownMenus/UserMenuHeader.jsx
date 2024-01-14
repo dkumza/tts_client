@@ -20,22 +20,22 @@ export const UserMenuHeader = ({ clickedMenu, setClickedMenu }) => {
    }, [controlMenuRef, clickedMenu, setClickedMenu]);
 
    return (
-      <div className="absolute right-0 w-full z-0">
+      <div className="absolute right-0 w-full z-0 mt-1">
          <div className=" mx-auto w-full  flex flex-col items-end justify-end px-6">
             <ul
                className="flex w-48 rounded  flex-col items-end justify-center align-middle z-10 text-sm  gap-1 bg-stone-700 text-stone-300"
                ref={controlMenuRef}
             >
-               <li className="w-48 truncate text-center px-3 py-1  font-semibold">
+               <li className="w-48 truncate text-center px-3 py-2  font-semibold">
                   Hi, {username}
                </li>
-               <li className="w-48 text-right px-3 py-1 flex gap-2 items-center justify-center  hover:bg-stone-500  hover:text-amber-400 cursor-pointer">
+               <li className="w-48 text-right px-3 py-2 flex gap-2 items-center justify-center  hover:bg-stone-500  hover:text-amber-400 cursor-pointer">
                   My Account
                </li>
-               <li className="w-48 text-right px-3 py-1 flex gap-2 items-center justify-center  hover:bg-stone-500  hover:text-amber-400 cursor-pointer">
+               <li className="w-48 text-right px-3 py-2 flex gap-2 items-center justify-center  hover:bg-stone-500  hover:text-amber-400 cursor-pointer">
                   My Wallet
                </li>
-               <li className="w-48 text-right px-3 py-1 flex gap-2 items-center justify-center  hover:bg-stone-500  hover:text-amber-400 cursor-pointer">
+               <li className="w-48 text-right px-3 py-2 flex gap-2 items-center justify-center  hover:bg-stone-500  hover:text-amber-400 cursor-pointer">
                   My Items
                </li>
                <Link
@@ -44,7 +44,7 @@ export const UserMenuHeader = ({ clickedMenu, setClickedMenu }) => {
                      logout();
                      setClickedMenu((prevState) => !prevState);
                   }}
-                  className="w-48 flex gap-2 items-center justify-center text-right px-3 py-1 hover:bg-stone-500  hover:text-amber-400 cursor-pointer"
+                  className="w-48 flex gap-2 items-center rounded justify-center text-right px-3 py-2 hover:bg-stone-500  hover:text-amber-400 cursor-pointer"
                >
                   Sign Out
                </Link>

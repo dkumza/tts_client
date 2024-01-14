@@ -62,10 +62,7 @@ export default function SignUp() {
 
    return (
       <div className="flex md:p-20 items-center align-middle justify-center min-w-full min-h-full text-white">
-         <div
-            style={{ backgroundColor: '#202020' }}
-            className="flex flex-col rounded-lg items-center justify-center align-middle mx-auto w-full max-w-md  px-12 py-14 shadow-sm min-h-full "
-         >
+         <div className="flex flex-col bg-stone-800 rounded-lg items-center justify-center align-middle mx-auto w-full max-w-md  px-12 py-14 shadow-sm min-h-full ">
             {' '}
             <h1 className="mb-4 text-2xl">Sign up</h1>
             <form onSubmit={formik.handleSubmit} className="w-full ">

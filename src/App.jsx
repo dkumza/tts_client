@@ -3,17 +3,20 @@ import { ProductsList } from './components/pages/products/ProductsList';
 import LogIn from './components/pages/auth/LogIn';
 import SignUp from './components/pages/auth/SingUp';
 import { Header } from './components/layout/Header';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import { useAuthContext } from './components/contexts/authContext';
 import { Sell } from './components/pages/sell/Sell';
 import { SingleProductPage } from './components/pages/products/SingleProductPage';
 import { ProductsByCategoryList } from './components/pages/products/ProductsByCategoryList';
 import { UserMenuHeader } from './components/dropDownMenus/UserMenuHeader';
 import { useState } from 'react';
+import Search from './components/forms/Search';
 
 function App() {
    const { isUserLoggedIn } = useAuthContext();
    const [clickedMenu, setClickedMenu] = useState(false);
+
+   const location = useLocation();
 
    return (
       <div className="min-h-screen ">
@@ -23,6 +26,9 @@ function App() {
                setClickedMenu={setClickedMenu}
                clickedMenu={clickedMenu}
             />
+         )}
+         {!['/sell', '/login', '/signup'].includes(location.pathname) && (
+            <Search />
          )}
          <Routes>
             <Route path="/" element={<ProductsList />} />
