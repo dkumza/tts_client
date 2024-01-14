@@ -4,9 +4,9 @@
 @tailwind components;
 @tailwind utilities;
 
-/* .active {
-   border-bottom: 2px solid #fcd34d;
-} */
+.active {
+   @apply bg-stone-200;
+}
 
 @layer base {
    html {

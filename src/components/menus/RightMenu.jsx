@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 export const RightMenu = () => {
    return (
@@ -21,36 +21,39 @@ export const RightMenu = () => {
             <h1 className="font-semibold text-base text-black">
                Filter by Categories
             </h1>
-            <Link
+            <NavLink to={'/'} className=" hover:bg-stone-300 px-3 py-1 rounded">
+               All Products
+            </NavLink>
+            <NavLink
                to={'/products/category/1'}
                className=" hover:bg-stone-300 px-3 py-1 rounded"
             >
                Desktop PCs
-            </Link>
-            <Link
+            </NavLink>
+            <NavLink
                to={'/products/category/2'}
                className=" hover:bg-stone-300 px-3 py-1 rounded"
             >
                Desktop Parts
-            </Link>
-            <Link
+            </NavLink>
+            <NavLink
                to={'/products/category/3'}
                className="  hover:bg-stone-300 px-3 py-1 rounded"
             >
                Laptops
-            </Link>
-            <Link
+            </NavLink>
+            <NavLink
                to={'/products/category/4'}
                className=" hover:bg-stone-300 px-3 py-1 rounded"
             >
                Laptop Parts
-            </Link>
-            <Link
+            </NavLink>
+            <NavLink
                to={'/products/category/5'}
                className="  hover:bg-stone-300 px-3 py-1 rounded"
             >
                Other
-            </Link>
+            </NavLink>
          </div>
          <div className="flex flex-col">
             <h1 className="text-xl font-semibold w-full text-center">

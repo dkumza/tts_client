@@ -24,7 +24,6 @@ export const SingleProductPage = () => {
          .get(`${PRODUCT_URL}/${productID}`)
          .then((response) => {
             const product = response.data;
-            console.log(product);
             setProductFromAPI(product);
          })
          .catch((error) => {
@@ -39,7 +38,6 @@ export const SingleProductPage = () => {
          (new Date() - new Date(productFromAPI.date)) / (1000 * 60 * 60 * 24)
       );
    }
-   console.log(productFromAPI);
 
    return (
       <div className="container mx-auto  min-h-full my-8">

@@ -22,8 +22,6 @@ export const ProductsByCategoryList = () => {
          });
    }, [catID]);
 
-   productsByCat && console.log('product by cat: ', productsByCat);
-
    return (
       <div className="container mx-auto flex gap-4">
          {/* <h1 className="pb-2">{+catID === 1 ? 'Desktop PCs' : 'Not PCs'}</h1> */}
