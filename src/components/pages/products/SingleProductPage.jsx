@@ -40,7 +40,7 @@ export const SingleProductPage = () => {
    }
 
    return (
-      <div className="container mx-auto  min-h-full my-8">
+      <div className="container mx-auto  min-h-full my-8 px-12">
          {!productFromAPI && <p>Loading</p>}
          <div className="min-h-full">
             {productFromAPI && (

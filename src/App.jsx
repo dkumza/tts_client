@@ -11,6 +11,7 @@ import { ProductsByCategoryList } from './components/pages/products/ProductsByCa
 import { UserMenuHeader } from './components/menus/UserMenuHeader';
 import { useState } from 'react';
 import Search from './components/forms/Search';
+import { ProductsBySearchList } from './components/pages/products/ProductsBySearchList';
 
 function App() {
    const { isUserLoggedIn } = useAuthContext();
@@ -36,6 +37,10 @@ function App() {
                path="/products/category/:catID"
                element={<ProductsByCategoryList />}
             />
+            <Route
+               path="/search/:string"
+               element={<ProductsBySearchList />}
+            ></Route>
             <Route path="/product/:productID" element={<SingleProductPage />} />
             <Route
                path="/sell"

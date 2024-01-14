@@ -23,7 +23,7 @@ export const ProductsByCategoryList = () => {
    }, [catID]);
 
    return (
-      <div className="container mx-auto flex gap-4">
+      <div className="container mx-auto flex gap-4 px-12">
          {/* <h1 className="pb-2">{+catID === 1 ? 'Desktop PCs' : 'Not PCs'}</h1> */}
          <ul className="flex gap-4 pb-4 flex-col max-w-[970px] min-w-[1170px] justify-center items-center">
             {productsByCat &&
