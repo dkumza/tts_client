@@ -5,7 +5,7 @@ const Search = () => {
       <div className="flex container mx-auto my-6 items-center gap-4">
          <div className=" md:w-[220px] flex justify-between items-center  rounded bg-white">
             <input
-               className="focus:outline-none rounded w-full py-2 px-3 container placeholder:text-sm"
+               className="focus:outline-none rounded w-full py-2 pl-4 container placeholder:text-sm"
                type="text"
                placeholder="Search for products"
             />

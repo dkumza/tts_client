@@ -39,38 +39,10 @@ export const SingleProductPage = () => {
          (new Date() - new Date(productFromAPI.date)) / (1000 * 60 * 60 * 24)
       );
    }
+   console.log(productFromAPI);
 
    return (
       <div className="container mx-auto  min-h-full my-8">
-         {/* <div className="py-4  flex align-middle items-center">
-            <Link
-               className=" hover:cursor-pointer text-gray-700 hover:text-black bg-white pl-2 flex items-center gap-1"
-               to={'/'}
-            >
-               <p>All Products</p>
-               <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="currentColor"
-                  className="bi bi-chevron-right"
-                  viewBox="0 0 16 16"
-               >
-                  <path
-                     fillRule="evenodd"
-                     d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"
-                  />
-               </svg>
-            </Link>
-            {productFromAPI && (
-               <Link
-                  to={`/products/category/${productFromAPI.cat_id}`}
-                  className="hover:cursor-pointer text-gray-700 hover:text-black bg-white pl-2 flex items-center gap-1 pr-2"
-               >
-                  <p> To cat {productFromAPI.cat_id}</p>
-               </Link>
-            )}
-         </div> */}
          {!productFromAPI && <p>Loading</p>}
          <div className="min-h-full">
             {productFromAPI && (
@@ -120,7 +92,7 @@ export const SingleProductPage = () => {
                                  to={`/products/category/${productFromAPI.cat_id}`}
                                  className="bg-sky-300 px-2 py-1 text-black rounded"
                               >
-                                 {/* {ad.cat_id} */} Desktop Pcs
+                                 {productFromAPI.cat_name}
                               </Link>
                               <div
                                  className={`${

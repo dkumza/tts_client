@@ -8,6 +8,7 @@ export const SingleProduct = ({ ad }) => {
          (new Date() - new Date(ad.date)) / (1000 * 60 * 60 * 24)
       );
    }
+
    return (
       <li className="bg-stone-100 hover:bg-gray-50 rounded text-md container  min-h-[184px] max-h-[184px] flex shadow">
          <div className="div flex min-w-full  gap-1 ">
@@ -30,7 +31,7 @@ export const SingleProduct = ({ ad }) => {
                               to={`/products/category/${ad.cat_id}`}
                               className="bg-sky-300 px-2 py-1 text-black rounded"
                            >
-                              {/* {ad.cat_id} */} Desktop Pcs
+                              {ad.cat_name}
                            </Link>
                            <div
                               className={`${

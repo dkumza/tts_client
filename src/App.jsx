@@ -8,7 +8,7 @@ import { useAuthContext } from './components/contexts/authContext';
 import { Sell } from './components/pages/sell/Sell';
 import { SingleProductPage } from './components/pages/products/SingleProductPage';
 import { ProductsByCategoryList } from './components/pages/products/ProductsByCategoryList';
-import { UserMenuHeader } from './components/dropDownMenus/UserMenuHeader';
+import { UserMenuHeader } from './components/menus/UserMenuHeader';
 import { useState } from 'react';
 import Search from './components/forms/Search';
 
@@ -19,7 +19,7 @@ function App() {
    const location = useLocation();
 
    return (
-      <div className="min-h-screen ">
+      <div className="min-h-screen">
          <Header setClickedMenu={setClickedMenu} />
          {isUserLoggedIn && clickedMenu && (
             <UserMenuHeader
