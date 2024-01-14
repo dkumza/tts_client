@@ -41,7 +41,7 @@ export const SingleProductPage = () => {
    }
 
    return (
-      <div className="container mx-auto min-h-full my-8">
+      <div className="container mx-auto  min-h-full my-8">
          {/* <div className="py-4  flex align-middle items-center">
             <Link
                className=" hover:cursor-pointer text-gray-700 hover:text-black bg-white pl-2 flex items-center gap-1"
