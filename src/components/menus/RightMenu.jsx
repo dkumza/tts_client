@@ -5,17 +5,17 @@ export const RightMenu = () => {
       <div className="flex flex-col gap-8 w-full h-fit p-6 text-left bg-stone-100 rounded">
          <div className="flex flex-col gap-2 justify-start items-start w-full">
             <h1 className="font-semibold w-full">Sort</h1>
-            <Link
+            {/* <Link
                // to={'/products/category/1'}
                className=" hover:bg-stone-300 px-3 py-1 rounded w-full"
             >
                Reset
-            </Link>
+            </Link> */}
             <Link
                // to={'/products/category/1'}
                className=" hover:bg-stone-300 px-3 py-1 rounded w-full"
             >
-               By Latest Added
+               By Latest
             </Link>
             <Link
                // to={'/products/category/1'}
@@ -77,8 +77,8 @@ export const RightMenu = () => {
             <div className="flex gap-4 items-center justify-center mt-4">
                <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
+                  width="18"
+                  height="18"
                   fill="currentColor"
                   className="bi bi-facebook"
                   viewBox="0 0 16 16"
@@ -87,8 +87,8 @@ export const RightMenu = () => {
                </svg>
                <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
+                  width="18"
+                  height="18"
                   fill="currentColor"
                   className="bi bi-twitter"
                   viewBox="0 0 16 16"
@@ -97,8 +97,8 @@ export const RightMenu = () => {
                </svg>
                <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
+                  width="18"
+                  height="18"
                   fill="currentColor"
                   className="bi bi-linkedin"
                   viewBox="0 0 16 16"
