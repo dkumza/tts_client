@@ -14,49 +14,29 @@ import Search from './components/forms/Search';
 import { ProductsBySearchList } from './components/pages/products/ProductsBySearchList';
 
 function App() {
-   const { isUserLoggedIn } = useAuthContext();
-   const [clickedMenu, setClickedMenu] = useState(false);
+  const { isUserLoggedIn } = useAuthContext();
+  const [clickedMenu, setClickedMenu] = useState(false);
 
-   const location = useLocation();
+  const location = useLocation();
 
-   return (
-      <div className="min-h-screen">
-         <Header setClickedMenu={setClickedMenu} />
-         {isUserLoggedIn && clickedMenu && (
-            <UserMenuHeader
-               setClickedMenu={setClickedMenu}
-               clickedMenu={clickedMenu}
-            />
-         )}
-         {!['/sell', '/login', '/signup'].includes(location.pathname) && (
-            <Search />
-         )}
-         <Routes>
-            <Route path="/" element={<ProductsList />} />
-            <Route
-               path="/products/category/:catID"
-               element={<ProductsByCategoryList />}
-            />
-            <Route
-               path="/search/:string"
-               element={<ProductsBySearchList />}
-            ></Route>
-            <Route path="/product/:productID" element={<SingleProductPage />} />
-            <Route
-               path="/sell"
-               element={isUserLoggedIn ? <Sell /> : <Navigate to={'/'} />}
-            />
-            <Route
-               path="/login"
-               element={isUserLoggedIn ? <ProductsList /> : <LogIn />}
-            />
-            <Route
-               path="/signup"
-               element={!isUserLoggedIn ? <SignUp /> : <Navigate to={'/'} />}
-            />
-         </Routes>
-      </div>
-   );
+  return (
+    <div className="min-h-screen">
+      <Header setClickedMenu={setClickedMenu} />
+      {isUserLoggedIn && clickedMenu && (
+        <UserMenuHeader setClickedMenu={setClickedMenu} clickedMenu={clickedMenu} />
+      )}
+      {!['/sell', '/login', '/signup'].includes(location.pathname) && <Search />}
+      <Routes>
+        <Route path="/" element={<ProductsList />} />
+        <Route path="/products/category/:catID" element={<ProductsByCategoryList />} />
+        <Route path="/search/:string" element={<ProductsBySearchList />}></Route>
+        <Route path="/product/:productID" element={<SingleProductPage />} />
+        <Route path="/sell" element={isUserLoggedIn ? <Sell /> : <Navigate to={'/'} />} />
+        <Route path="/login" element={isUserLoggedIn ? <ProductsList /> : <LogIn />} />
+        <Route path="/signup" element={!isUserLoggedIn ? <SignUp /> : <Navigate to={'/'} />} />
+      </Routes>
+    </div>
+  );
 }
 
 export default App;
