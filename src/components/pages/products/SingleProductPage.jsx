@@ -17,7 +17,9 @@ export const SingleProductPage = () => {
 
   let dateDay;
   if (productFromAPI) {
-    dateDay = Math.floor((new Date() - new Date(productFromAPI.date)) / (1000 * 60 * 60 * 24));
+    dateDay = Math.floor(
+      (new Date() - new Date(productFromAPI.date)) / (1000 * 60 * 60 * 24),
+    );
   }
 
   useEffect(() => {
@@ -49,7 +51,7 @@ export const SingleProductPage = () => {
   };
 
   return (
-    <div className="container mx-auto  min-h-full my-8 px-12">
+    <div className="container mx-auto  min-h-full  px-12 flex flex-col">
       {!productFromAPI && <p>Loading</p>}
       <div className="min-h-full">
         {productFromAPI && (
@@ -89,7 +91,9 @@ export const SingleProductPage = () => {
             </div>
             <div className="right w-full flex flex-col gap-4 justify-between  border pt-">
               <div className="title flex flex-col gap-2 justify-start">
-                <h1 className="text-4xl font-semibold text-stone-700">{productFromAPI.title}</h1>
+                <h1 className="text-4xl font-semibold text-stone-700">
+                  {productFromAPI.title}
+                </h1>
                 <p className="py-1 text-xs">
                   By{' '}
                   <span className="bg-white ml-1 px-2 font-medium py-1 rounded">
@@ -101,7 +105,9 @@ export const SingleProductPage = () => {
                   <div className="flex gap-2 items-center">
                     <p
                       className={`${
-                        productFromAPI.p_condition === 'used' ? 'bg-amber-400' : 'bg-lime-400'
+                        productFromAPI.p_condition === 'used'
+                          ? 'bg-amber-400'
+                          : 'bg-lime-400'
                       } capitalize w-fit px-4 py-1 rounded`}
                     >
                       {productFromAPI.p_condition}
@@ -118,28 +124,34 @@ export const SingleProductPage = () => {
                       } px-2 py-1 rounded`}
                     >
                       <span className="font-medium">
-                        {dateDay === 0 ? 'Listed: Today' : `Listed: ${dateDay} days ago`}
+                        {dateDay === 0
+                          ? 'Listed: Today'
+                          : `Listed: ${dateDay} days ago`}
                       </span>
                     </div>
                   </div>
                 </div>
               </div>
               <div className="">
-                <h1 className="font-semibold py-2">Product information from seller</h1>
+                <h1 className="font-semibold py-2">
+                  Product information from seller
+                </h1>
                 <p className="bg-white p-4 text-sm">
                   {/* {productFromAPI.content} */}
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias error adipisci
-                  possimus sequi itaque dolorum eveniet sed doloremque sunt autem culpa ullam
-                  repellat provident, laboriosam quibusdam impedit nemo repellendus consequuntur
-                  asperiores dolor eum, dolores quo voluptate libero! Mollitia eius soluta molestias
-                  rem impedit dolore, sunt saepe laudantium, sequi, voluptatem ipsam?
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Molestias error adipisci possimus sequi itaque dolorum eveniet
+                  sed doloremque sunt autem culpa ullam repellat provident,
+                  laboriosam quibusdam impedit nemo repellendus consequuntur
+                  asperiores dolor eum, dolores quo voluptate libero! Mollitia
+                  eius soluta molestias rem impedit dolore, sunt saepe
+                  laudantium, sequi, voluptatem ipsam?
                 </p>
               </div>
             </div>
           </div>
         )}
       </div>
-      <div className="comments mt-8">
+      <div className="comments ">
         <CommentsSection productID={productID} />
       </div>
     </div>

@@ -1,14 +1,36 @@
+import axios from 'axios';
 import { useAuthContext } from '../contexts/authContext';
 
-export const SingleComment = ({ comment }) => {
-  const { username } = useAuthContext();
-  console.log(comment);
+export const SingleComment = ({ comment, setDataFromAPi }) => {
+  const { username, token } = useAuthContext();
+
+  const DEL_COMM_URL = `http://localhost:3000/api/comments/${comment.comm_id}`;
 
   const auth = !!(username === comment.comm_author);
 
   const date = new Date(comment.comm_date).toLocaleString('lt', {
     dateStyle: 'short',
   });
+
+  const handleDeleteComm = () => {
+    axios
+      .delete(DEL_COMM_URL, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        console.log('res: ', response.data.msg);
+        setDataFromAPi((prevS) =>
+          prevS.filter((com) => com.comm_id !== comment.comm_id),
+        );
+
+        // navigate('/');
+      })
+      .catch((error) => {
+        console.log('error ===', error.response.data.error);
+      });
+  };
 
   return (
     <div className="flex gap-4 items-center justify-between bg-white p-4 rounded shadow">
@@ -21,7 +43,7 @@ export const SingleComment = ({ comment }) => {
       </div>
       {auth && (
         <div className="delete">
-          <button>
+          <button onClick={handleDeleteComm}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"

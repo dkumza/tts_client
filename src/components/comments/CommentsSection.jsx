@@ -21,9 +21,11 @@ export const CommentsSection = ({ productID }) => {
   };
 
   return (
-    <>
+    <div className="my-6">
       <div className="flex justify-between items-center">
-        <h1 className="font-semibold py-2">Comments ({dataFromAPi.length})</h1>
+        <h1 className="font-semibold py-2">
+          Comments ({!dataFromAPi ? '0' : dataFromAPi.length})
+        </h1>
         {username && (
           <button
             onClick={handleComment}
@@ -51,9 +53,13 @@ export const CommentsSection = ({ productID }) => {
       <div className="flex flex-col gap-2 rounded">
         {dataFromAPi &&
           dataFromAPi.map((comment) => (
-            <SingleComment key={comment.comm_id} comment={comment} />
+            <SingleComment
+              key={comment.comm_id}
+              comment={comment}
+              setDataFromAPi={setDataFromAPi}
+            />
           ))}
       </div>
-    </>
+    </div>
   );
 };
