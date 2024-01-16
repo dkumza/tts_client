@@ -8,11 +8,11 @@ import { useEffect, useState } from 'react';
 import { CustomRadio } from '../../forms/CustomRadio';
 import { CustomFormik } from '../../forms/CustomFormik';
 
-const PRODUCTS_URL = 'http://localhost:3000/api/ads';
+const PRODUCTS_URL = 'http://localhost:3000/api/products';
 const CATs_URL = 'http://localhost:3000/api/categories';
 
 export const Sell = () => {
-  const { username } = useAuthContext();
+  const { username, token } = useAuthContext();
   const [cats, setCats] = useState(null);
 
   // fetch categories from API
@@ -67,7 +67,11 @@ export const Sell = () => {
 
   const axiosNewProduct = (newProduct) => {
     axios
-      .post(PRODUCTS_URL, newProduct)
+      .post(PRODUCTS_URL, newProduct, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((res) => {
         console.log(res.data);
         formik.resetForm();
