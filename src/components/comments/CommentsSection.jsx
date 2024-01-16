@@ -48,7 +48,7 @@ export const CommentsSection = ({ productID }) => {
           setDataFromAPi={setDataFromAPi}
         />
       )}
-      <div className="bg-white p-4 flex flex-col gap-2 rounded">
+      <div className="flex flex-col gap-2 rounded">
         {dataFromAPi &&
           dataFromAPi.map((comment) => (
             <SingleComment key={comment.comm_id} comment={comment} />
