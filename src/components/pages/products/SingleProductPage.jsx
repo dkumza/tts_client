@@ -1,17 +1,28 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { CommentsSection } from '../../comments/CommentsSection';
+import { useAuthContext } from '../../contexts/authContext';
 
 const PRODUCT_URL = 'http://localhost:3000/api/products';
 
 export const SingleProductPage = () => {
   const [productFromAPI, setProductFromAPI] = useState(null);
   const { productID } = useParams();
+  const { username, token } = useAuthContext();
+
+  const navigate = useNavigate();
+
+  const URL = `${PRODUCT_URL}/${productID}`;
+
+  let dateDay;
+  if (productFromAPI) {
+    dateDay = Math.floor((new Date() - new Date(productFromAPI.date)) / (1000 * 60 * 60 * 24));
+  }
 
   useEffect(() => {
     axios
-      .get(`${PRODUCT_URL}/${productID}`)
+      .get(URL)
       .then((response) => {
         const product = response.data;
         setProductFromAPI(product);
@@ -19,13 +30,23 @@ export const SingleProductPage = () => {
       .catch((error) => {
         console.log('error ===', error);
       });
-  }, [productID]);
+  }, [URL, productID]);
 
-  let dateDay;
-
-  if (productFromAPI) {
-    dateDay = Math.floor((new Date() - new Date(productFromAPI.date)) / (1000 * 60 * 60 * 24));
-  }
+  const handleDeleteProduct = () => {
+    axios
+      .delete(URL, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        console.log('res: ', response.data.msg);
+        navigate('/');
+      })
+      .catch((error) => {
+        console.log('error ===', error.response.data.error);
+      });
+  };
 
   return (
     <div className="container mx-auto  min-h-full my-8 px-12">
@@ -46,9 +67,24 @@ export const SingleProductPage = () => {
                 <div className="price text-3xl font-semibold py-2 text-gray-800">
                   € {productFromAPI.price}
                 </div>
-                <div className="price text-xl font-semibold px-6 py-2 rounded bg-amber-400 hover:bg-sky-600 hover:cursor-pointer hover:text-amber-400">
-                  BUY
-                </div>
+                {username !== productFromAPI.username && (
+                  <div className="price text-xl font-semibold px-6 py-2 rounded bg-amber-400 hover:bg-sky-600 hover:cursor-pointer hover:text-amber-400">
+                    BUY
+                  </div>
+                )}
+                {username === productFromAPI.username && (
+                  <div className="flex gap-2">
+                    <div className="price text-xl font-semibold px-6 py-2 rounded text-white bg-sky-400 hover:bg-sky-600 hover:cursor-pointer hover:text-amber-400">
+                      EDIT
+                    </div>
+                    <button
+                      onClick={handleDeleteProduct}
+                      className="price text-xl font-semibold px-6 py-2 rounded text-white bg-rose-500 hover:bg-rose-400 hover:cursor-pointer"
+                    >
+                      DELETE
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
             <div className="right w-full flex flex-col gap-4 justify-between  border pt-">
