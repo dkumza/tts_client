@@ -1,5 +1,8 @@
 export const SingleComment = ({ comment }) => {
-  const date = new Date(comment.comm_date).toLocaleString('lt', { dateStyle: 'short' });
+  console.log(comment.comm_date);
+  const date = new Date(comment.comm_date).toLocaleString('lt', {
+    dateStyle: 'short',
+  });
 
   return (
     <div className="flex flex-col">

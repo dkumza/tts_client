@@ -7,14 +7,14 @@ import axios from 'axios';
 
 const COMM_URL = 'http://localhost:3000/api/comments/product';
 
-export const AddComment = ({ setComment, productID }) => {
+export const AddComment = ({ setComment, productID, setDataFromAPi }) => {
   const { username, token } = useAuthContext();
 
   const formik = useFormik({
     initialValues: {
       comm_author: username,
       comm_context: '',
-      date: new Date().toLocaleString('lt-LT', { dateStyle: 'short' }),
+      comm_date: new Date().toLocaleString('lt-LT', { dateStyle: 'short' }),
     },
     validationSchema: Yup.object({
       comm_context: Yup.string()
@@ -24,13 +24,11 @@ export const AddComment = ({ setComment, productID }) => {
         .required('*Comment is a required field'),
     }),
     onSubmit: (data) => {
-      console.log(data);
       axiosNewComment(data);
     },
   });
 
   const axiosNewComment = (data) => {
-    console.log(data);
     axios
       .post(`${COMM_URL}/${productID}`, data, {
         headers: {
@@ -39,7 +37,14 @@ export const AddComment = ({ setComment, productID }) => {
       })
       .then((res) => {
         console.log(res.data);
-        // formik.resetForm();
+        setDataFromAPi((prevState) => {
+          // from res add comm_id to new object - newComm
+          const newComm = { comm_id: res.data.comm_id, ...data };
+          // spread prev state and add to end newComm
+          const newCommState = [...prevState, newComm];
+          return newCommState;
+        });
+        formik.resetForm();
       })
       .catch((error) => {
         console.warn('axiosLogin:', error);

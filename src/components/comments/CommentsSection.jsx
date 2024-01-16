@@ -41,7 +41,13 @@ export const CommentsSection = ({ productID }) => {
           </Link>
         )}
       </div>
-      {comment && <AddComment setComment={setComment} productID={productID} />}
+      {comment && (
+        <AddComment
+          setComment={setComment}
+          productID={productID}
+          setDataFromAPi={setDataFromAPi}
+        />
+      )}
       <div className="bg-white p-4 flex flex-col gap-2 rounded">
         {dataFromAPi &&
           dataFromAPi.map((comment) => (
