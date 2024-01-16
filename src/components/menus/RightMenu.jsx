@@ -11,12 +11,12 @@ export const RightMenu = () => {
             >
                Reset
             </Link> */}
-            <Link
-               // to={'/products/category/1'}
+            <NavLink
+               to={'/'}
                className=" hover:bg-stone-300 px-3 py-1 rounded w-full"
             >
                By Latest
-            </Link>
+            </NavLink>
             <Link
                // to={'/products/category/1'}
                className=" hover:bg-stone-300 px-3 py-1 rounded w-full"

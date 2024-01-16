@@ -8,37 +8,6 @@ import { useEffect, useState } from 'react';
 import { CustomRadio } from '../../forms/CustomRadio';
 import { CustomFormik } from '../../forms/CustomFormik';
 
-const newAd = {
-   title: 'Edited Post 1',
-   username: 'Username 1',
-   date: '2022-07-07',
-   content: 'Test content',
-   cat_id: 1001,
-   price: 201,
-   sub_id: 4001,
-};
-
-const categories = [
-   {
-      cat_id: 1,
-      title: 'Computing',
-   },
-   {
-      cat_id: 2,
-      title: 'Phones ',
-   },
-];
-const subCategories = [
-   {
-      cat_id: 1,
-      title: 'Computing',
-   },
-   {
-      cat_id: 2,
-      title: 'Phones ',
-   },
-];
-
 const PRODUCTS_URL = 'http://localhost:3000/api/ads';
 const CATs_URL = 'http://localhost:3000/api/categories';
 

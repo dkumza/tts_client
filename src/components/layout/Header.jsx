@@ -67,7 +67,7 @@ export const Header = ({ setClickedMenu }) => {
                      to={'/login'}
                      className="w-36 py-1  px-4  flex items-center rounded justify-center truncate border-t-2 border-b-2 text-black  border-lime-400 bg-lime-400 font-semibold hover:bg-stone-500 hover:border-stone-500  hover:text-amber-400"
                   >
-                     Sing Up
+                     Sing In
                   </NavLink>
 
                   <NavLink

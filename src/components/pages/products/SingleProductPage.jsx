@@ -1,25 +1,15 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import { CommentsSection } from '../../comments/CommentsSection';
 
 const PRODUCT_URL = 'http://localhost:3000/api/products';
-
-const product = {
-   title: 'MacBook Pro M2',
-   username: 'skirma',
-   date: '2024-01-12',
-   content: 'new laptop',
-   cat_id: '3',
-   price: 3000,
-   p_condition: 'new',
-};
 
 export const SingleProductPage = () => {
    const [productFromAPI, setProductFromAPI] = useState(null);
    const { productID } = useParams();
 
    useEffect(() => {
-      // TODO token
       axios
          .get(`${PRODUCT_URL}/${productID}`)
          .then((response) => {
@@ -131,8 +121,7 @@ export const SingleProductPage = () => {
          <div className="comments mt-8">
             <h1 className="font-semibold py-2">Comments</h1>
             <div className="bg-white p-4">
-               <h1>One comment</h1>
-               <p>comment content</p>
+               <CommentsSection productID={productID}/>
             </div>
          </div>
       </div>
