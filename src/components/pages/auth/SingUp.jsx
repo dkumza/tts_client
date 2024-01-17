@@ -4,10 +4,13 @@ import * as Yup from 'yup';
 import { CustomInput } from '../../forms/CustomInput';
 import { CustomButton } from '../../forms/CustomButton';
 import { Link } from 'react-router-dom';
+import { useMsgContext } from '../../contexts/msgContext';
 
 const REG_URL = 'http://localhost:3000/api/auth/register';
 
 export default function SignUp() {
+  const { addMsg } = useMsgContext();
+
   const formik = useFormik({
     initialValues: {
       username: '',
@@ -48,12 +51,14 @@ export default function SignUp() {
       .post(REG_URL, signUpInfo)
       .then((res) => {
         console.log('res ===', res);
-        res.status === 201 ? alert(res.data.msg) : null;
+        res.status === 201 ? addMsg('bg-green-200', res.data.msg) : null;
         formik.resetForm();
       })
       .catch((error) => {
-        console.warn('axiosLogin:', error);
-        const errorFromAPI = error.response.data;
+        const newErr = error.response.data;
+        addMsg('bg-red-200', newErr.msg);
+        console.warn('axiosLogin:', newErr);
+        const errorFromAPI = newErr.msg;
         formik.setErrors(errorFromAPI);
       });
   };

@@ -14,7 +14,7 @@ export const SingleProduct = ({ product }) => {
   return (
     <li
       className={`${
-        username === product.username ? 'bg-lime-100' : ''
+        username === product.username ? 'bg-lime-100' : 'bg-white'
       } hover:bg-amber-50 rounded text-md container  min-h-[184px] max-h-[184px] flex shadow`}
     >
       <div className="div flex min-w-full  gap-1 ">

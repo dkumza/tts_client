@@ -26,7 +26,7 @@ export const AuthCtxProvider = ({ children }) => {
     setUserName(username);
     localStorage.setItem('session_token', token);
     localStorage.setItem('session_username', username);
-    addMsg('bg-green-200', 'Logged in successfully');
+    addMsg('bg-green-200', 'Logged in Successfully');
   }
 
   function logout() {
@@ -35,7 +35,7 @@ export const AuthCtxProvider = ({ children }) => {
     setUserName('');
     localStorage.removeItem('session_token');
     localStorage.removeItem('session_username');
-    addMsg('bg-green-200', 'Logged out...');
+    addMsg('bg-green-200', 'Logged Out');
   }
 
   const ctxValues = {

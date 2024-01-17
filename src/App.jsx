@@ -21,7 +21,7 @@ function App() {
   const location = useLocation();
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen relative">
       <Header setClickedMenu={setClickedMenu} />
       {isUserLoggedIn && clickedMenu && (
         <UserMenuHeader
@@ -33,6 +33,7 @@ function App() {
       {!['/sell', '/login', '/signup'].includes(location.pathname) && (
         <Search />
       )}
+
       <Routes>
         <Route path="/" element={<ProductsList />} />
         <Route

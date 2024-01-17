@@ -5,6 +5,7 @@ import { CommentsSection } from '../../comments/CommentsSection';
 import { useAuthContext } from '../../contexts/authContext';
 import { useProductsContext } from '../../contexts/productsContext';
 import { useMsgContext } from '../../contexts/msgContext';
+import { Modal4Delete } from '../../menus/Modal4Delete';
 
 const PRODUCT_URL = 'http://localhost:3000/api/products';
 
@@ -13,6 +14,7 @@ export const SingleProductPage = () => {
   const { productID } = useParams();
   const { username, token, logout } = useAuthContext();
   const { products, setProducts } = useProductsContext();
+  const [del, setDel] = useState(false);
   const { addMsg } = useMsgContext();
 
   const navigate = useNavigate();
@@ -66,6 +68,12 @@ export const SingleProductPage = () => {
 
   return (
     <div className="container mx-auto  min-h-full  px-12 flex flex-col">
+      {del && (
+        <Modal4Delete
+          setDel={setDel}
+          handleDeleteProduct={handleDeleteProduct}
+        />
+      )}
       {!productFromAPI && <p>Loading</p>}
       <div className="min-h-full">
         {productFromAPI && (
@@ -94,7 +102,7 @@ export const SingleProductPage = () => {
                       EDIT
                     </div>
                     <button
-                      onClick={handleDeleteProduct}
+                      onClick={() => setDel(true)}
                       className="price text-xl font-semibold px-6 py-2 rounded text-white bg-rose-500 hover:bg-rose-400 hover:cursor-pointer"
                     >
                       DELETE

@@ -8,7 +8,7 @@ export const CustomMsg = () => {
         {messages.map((msg) => (
           <div
             key={msg.id}
-            className={`${msg.type}  py-1 px-20 rounded w-full text-center`}
+            className={`${msg.type}  py-1 px-20 rounded w-full text-center `}
           >
             {msg.text}
           </div>

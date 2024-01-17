@@ -31,7 +31,6 @@ export default function LogIn() {
         .required('*Password is required'),
     }),
     onSubmit: (loginInfo) => {
-      console.log(loginInfo);
       axiosLogin(loginInfo);
     },
   });
@@ -40,7 +39,6 @@ export default function LogIn() {
     axios
       .post(LOGIN_URL, loginInfo)
       .then((res) => {
-        console.log(res.data);
         const { token, username } = res.data;
 
         if (token) {
