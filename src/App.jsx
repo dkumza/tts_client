@@ -12,6 +12,7 @@ import { UserMenuHeader } from './components/menus/UserMenuHeader';
 import { useState } from 'react';
 import Search from './components/forms/Search';
 import { ProductsBySearchList } from './components/pages/products/ProductsBySearchList';
+import { CustomMsg } from './components/forms/CustomMsg';
 
 function App() {
   const { isUserLoggedIn } = useAuthContext();
@@ -23,17 +24,38 @@ function App() {
     <div className="min-h-screen">
       <Header setClickedMenu={setClickedMenu} />
       {isUserLoggedIn && clickedMenu && (
-        <UserMenuHeader setClickedMenu={setClickedMenu} clickedMenu={clickedMenu} />
+        <UserMenuHeader
+          setClickedMenu={setClickedMenu}
+          clickedMenu={clickedMenu}
+        />
       )}
-      {!['/sell', '/login', '/signup'].includes(location.pathname) && <Search />}
+      <CustomMsg />
+      {!['/sell', '/login', '/signup'].includes(location.pathname) && (
+        <Search />
+      )}
       <Routes>
         <Route path="/" element={<ProductsList />} />
-        <Route path="/products/category/:catID" element={<ProductsByCategoryList />} />
-        <Route path="/search/:string" element={<ProductsBySearchList />}></Route>
+        <Route
+          path="/products/category/:catID"
+          element={<ProductsByCategoryList />}
+        />
+        <Route
+          path="/search/:string"
+          element={<ProductsBySearchList />}
+        ></Route>
         <Route path="/product/:productID" element={<SingleProductPage />} />
-        <Route path="/sell" element={isUserLoggedIn ? <Sell /> : <Navigate to={'/'} />} />
-        <Route path="/login" element={isUserLoggedIn ? <ProductsList /> : <LogIn />} />
-        <Route path="/signup" element={!isUserLoggedIn ? <SignUp /> : <Navigate to={'/'} />} />
+        <Route
+          path="/sell"
+          element={isUserLoggedIn ? <Sell /> : <Navigate to={'/'} />}
+        />
+        <Route
+          path="/login"
+          element={isUserLoggedIn ? <ProductsList /> : <LogIn />}
+        />
+        <Route
+          path="/signup"
+          element={!isUserLoggedIn ? <SignUp /> : <Navigate to={'/'} />}
+        />
       </Routes>
     </div>
   );

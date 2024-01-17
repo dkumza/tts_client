@@ -4,11 +4,13 @@ import { useAuthContext } from '../contexts/authContext';
 import { CustomFormik } from '../forms/CustomFormik';
 import { CustomButton } from '../forms/CustomButton';
 import axios from 'axios';
+import { useMsgContext } from '../contexts/msgContext';
 
 const COMM_URL = 'http://localhost:3000/api/comments/product';
 
 export const AddComment = ({ setComment, productID, setDataFromAPi }) => {
   const { username, token } = useAuthContext();
+  const { addMsg } = useMsgContext();
 
   const formik = useFormik({
     initialValues: {
@@ -45,6 +47,7 @@ export const AddComment = ({ setComment, productID, setDataFromAPi }) => {
           return newCommState;
         });
         formik.resetForm();
+        addMsg('bg-green-200', `${res.data.msg}`);
       })
       .catch((error) => {
         console.warn('axiosLogin:', error);

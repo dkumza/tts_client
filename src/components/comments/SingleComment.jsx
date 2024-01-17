@@ -1,8 +1,10 @@
 import axios from 'axios';
 import { useAuthContext } from '../contexts/authContext';
+import { useMsgContext } from '../contexts/msgContext';
 
 export const SingleComment = ({ comment, setDataFromAPi }) => {
   const { username, token } = useAuthContext();
+  const { addMsg } = useMsgContext();
 
   const DEL_COMM_URL = `http://localhost:3000/api/comments/${comment.comm_id}`;
 
@@ -24,11 +26,12 @@ export const SingleComment = ({ comment, setDataFromAPi }) => {
         setDataFromAPi((prevS) =>
           prevS.filter((com) => com.comm_id !== comment.comm_id),
         );
+        addMsg('bg-green-200', `${response.data.msg}`);
 
         // navigate('/');
       })
       .catch((error) => {
-        console.log('error ===', error.response.data.error);
+        console.log('error ===', error.response);
       });
   };
 

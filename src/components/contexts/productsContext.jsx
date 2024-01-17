@@ -34,6 +34,7 @@ export const ProductsCtxProvider = ({ children }) => {
       .get(PRODUCTS_URL)
       .then((response) => {
         const productsFromAPI = response.data;
+        console.log(productsFromAPI);
         const sortProdByDate = productsFromAPI.sort(
           (b, a) => new Date(a.date) - new Date(b.date),
         );

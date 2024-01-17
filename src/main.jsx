@@ -4,13 +4,16 @@ import './index.css';
 import { BrowserRouter } from 'react-router-dom';
 import { AuthCtxProvider } from './components/contexts/authContext.jsx';
 import { ProductsCtxProvider } from './components/contexts/productsContext.jsx';
+import { MsgContextProvider } from './components/contexts/msgContext.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-   <BrowserRouter>
-      <AuthCtxProvider>
-         <ProductsCtxProvider>
-            <App />
-         </ProductsCtxProvider>
-      </AuthCtxProvider>
-   </BrowserRouter>
+  <BrowserRouter>
+    <AuthCtxProvider>
+      <ProductsCtxProvider>
+        <MsgContextProvider>
+          <App />
+        </MsgContextProvider>
+      </ProductsCtxProvider>
+    </AuthCtxProvider>
+  </BrowserRouter>,
 );

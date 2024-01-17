@@ -5,11 +5,13 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { CustomInput } from '../../forms/CustomInput';
 import { CustomButton } from '../../forms/CustomButton';
+import { useMsgContext } from '../../contexts/msgContext';
 
 const LOGIN_URL = 'http://localhost:3000/api/auth/login';
 
 export default function LogIn() {
   const { login } = useAuthContext();
+  const { addMsg } = useMsgContext();
 
   const navigate = useNavigate();
 
@@ -19,7 +21,10 @@ export default function LogIn() {
       password: '123456',
     },
     validationSchema: Yup.object({
-      email: Yup.string().trim().required('*Email is required').email('*Email must be valid email'),
+      email: Yup.string()
+        .trim()
+        .required('*Email is required')
+        .email('*Email must be valid email'),
       password: Yup.string()
         .trim()
         .min(6, '*Password must be at least 6 characters long')
@@ -42,10 +47,12 @@ export default function LogIn() {
           login(token, username);
           formik.resetForm();
           navigate(-1);
+          addMsg('bg-green-200', `${res.data.msg}`);
         }
       })
       .catch((error) => {
-        console.warn('axiosLogin:', error);
+        // console.warn('axiosLogin:', error);
+        addMsg('bg-red-200', `${error.response.data.error}`);
         const errorFromAPI = error.response.data;
         formik.setErrors(errorFromAPI);
       });
@@ -97,7 +104,9 @@ export default function LogIn() {
           />
           <CustomButton
             text={'Sign In'}
-            css={'w-full text-white font-semibold bg-amber-500  hover:bg-amber-400'}
+            css={
+              'w-full text-white font-semibold bg-amber-500  hover:bg-amber-400'
+            }
             type={'submit'}
           />
           <div className="flex justify-center mb-3">OR</div>

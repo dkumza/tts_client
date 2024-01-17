@@ -8,12 +8,14 @@ import { CustomRadio } from '../../forms/CustomRadio';
 import { CustomFormik } from '../../forms/CustomFormik';
 import { useProductsContext } from '../../contexts/productsContext';
 import { useNavigate } from 'react-router-dom';
+import { useMsgContext } from '../../contexts/msgContext';
 
 const PRODUCTS_URL = 'http://localhost:3000/api/products';
 
 export const Sell = () => {
   const { username, token } = useAuthContext();
-  const { cats, products } = useProductsContext();
+  const { cats, products, setProducts } = useProductsContext();
+  const { addMsg } = useMsgContext();
 
   const navigate = useNavigate();
 
@@ -24,7 +26,7 @@ export const Sell = () => {
       content: '',
       price: '',
       username,
-      date: new Date().toLocaleString('lt-LT', { dateStyle: 'short' }),
+      date: new Date().toLocaleString('lt-LT'),
       p_condition: '',
     },
     validationSchema: Yup.object({
@@ -54,9 +56,9 @@ export const Sell = () => {
     },
   });
 
-  const axiosNewProduct = (newProduct) => {
+  const axiosNewProduct = (data) => {
     axios
-      .post(PRODUCTS_URL, newProduct, {
+      .post(PRODUCTS_URL, data, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -64,7 +66,16 @@ export const Sell = () => {
       .then((res) => {
         console.log(res.data);
         formik.resetForm();
+        console.log(res.data);
+        setProducts((prevState) => {
+          // from res add comm_id to new object - newComm
+          const newProduct = { id: res.data.id, ...data };
+          // spread prev state and add to end newComm
+          const newProductState = [...prevState, newProduct];
+          return newProductState;
+        });
         navigate('/');
+        addMsg('bg-green-200', 'Product added successfully');
       })
       .catch((error) => {
         console.warn('axiosLogin:', error);

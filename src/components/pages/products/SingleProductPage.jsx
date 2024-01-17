@@ -4,15 +4,16 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { CommentsSection } from '../../comments/CommentsSection';
 import { useAuthContext } from '../../contexts/authContext';
 import { useProductsContext } from '../../contexts/productsContext';
+import { useMsgContext } from '../../contexts/msgContext';
 
 const PRODUCT_URL = 'http://localhost:3000/api/products';
 
 export const SingleProductPage = () => {
   const [productFromAPI, setProductFromAPI] = useState(null);
   const { productID } = useParams();
-  const { username, token } = useAuthContext();
+  const { username, token, logout } = useAuthContext();
   const { products, setProducts } = useProductsContext();
-  products && console.log(products);
+  const { addMsg } = useMsgContext();
 
   const navigate = useNavigate();
 
@@ -50,8 +51,15 @@ export const SingleProductPage = () => {
           prevS.filter((prod) => prod.id !== productFromAPI.id),
         );
         navigate('/');
+        addMsg('bg-green-200', `${response.data.msg}`);
       })
       .catch((error) => {
+        console.log(error);
+        addMsg('bg-red-200', `${error.response.data}, you need to login again`);
+        if (error.response.data === 'Unauthorized') {
+          logout();
+          navigate('/login');
+        }
         console.log('error ===', error.response.data.error);
       });
   };
@@ -76,8 +84,8 @@ export const SingleProductPage = () => {
                   € {productFromAPI.price}
                 </div>
                 {username !== productFromAPI.username && (
-                  <div className="price text-xl font-semibold px-6 py-2 rounded bg-amber-400 hover:bg-sky-600 hover:cursor-pointer hover:text-amber-400">
-                    BUY
+                  <div className="price text-xl  px-6 py-2 rounded bg-amber-400 hover:bg-sky-600 hover:cursor-pointer hover:text-amber-400">
+                    Contact Seller
                   </div>
                 )}
                 {username === productFromAPI.username && (
