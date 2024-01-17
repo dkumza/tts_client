@@ -13,7 +13,7 @@ export const SingleProductPage = () => {
   const [productFromAPI, setProductFromAPI] = useState(null);
   const { productID } = useParams();
   const { username, token, logout } = useAuthContext();
-  const { products, setProducts } = useProductsContext();
+  const { products, handleEditProduct, setProducts } = useProductsContext();
   const [del, setDel] = useState(false);
   const { addMsg } = useMsgContext();
 
@@ -48,16 +48,16 @@ export const SingleProductPage = () => {
         },
       })
       .then((response) => {
-        console.log('res: ', response.data.msg);
+        navigate('/');
         setProducts((prevS) =>
           prevS.filter((prod) => prod.id !== productFromAPI.id),
         );
-        navigate('/');
+
         addMsg('bg-green-200', `${response.data.msg}`);
       })
       .catch((error) => {
         console.log(error);
-        addMsg('bg-red-200', `${error.response.data}, you need to login again`);
+        addMsg('bg-red-200', `You need to login again`);
         if (error.response.data === 'Unauthorized') {
           logout();
           navigate('/login');
@@ -98,7 +98,10 @@ export const SingleProductPage = () => {
                 )}
                 {username === productFromAPI.username && (
                   <div className="flex gap-2">
-                    <div className="price text-xl font-semibold px-6 py-2 rounded text-white bg-sky-400 hover:bg-sky-600 hover:cursor-pointer hover:text-amber-400">
+                    <div
+                      onClick={() => handleEditProduct(productFromAPI.id)}
+                      className="price text-xl font-semibold px-6 py-2 rounded text-white bg-sky-400 hover:bg-sky-600 hover:cursor-pointer hover:text-amber-400"
+                    >
                       EDIT
                     </div>
                     <button

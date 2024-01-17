@@ -13,32 +13,34 @@ import { useMsgContext } from '../../contexts/msgContext';
 const PRODUCTS_URL = 'http://localhost:3000/api/products';
 
 export const Sell = () => {
-  const { username, token } = useAuthContext();
-  const { cats, products, setProducts } = useProductsContext();
+  const { username, token, logout } = useAuthContext();
+  const { cats, products, setProducts, initialValues } = useProductsContext();
   const { addMsg } = useMsgContext();
+
+  let id;
+  if (initialValues) {
+    ({ id } = initialValues);
+  }
 
   const navigate = useNavigate();
 
+  const defaultValues = {
+    title: '',
+    cat_id: 0,
+    content: '',
+    username,
+    price: '',
+    p_condition: '',
+  };
+
   const formik = useFormik({
-    initialValues: {
-      title: '',
-      cat_id: 0,
-      content: '',
-      price: '',
-      username,
-      date: new Date().toLocaleString('lt-LT'),
-      p_condition: '',
-    },
+    initialValues: initialValues ? initialValues : defaultValues,
     validationSchema: Yup.object({
       cat_id: Yup.number().min(1, '*Select category is required'),
       title: Yup.string()
         .trim()
         .min(3, '*Title must be at least 3 characters long')
         .required('*Title is required'),
-      username: Yup.string()
-        .trim()
-        .min(3, '*Username name must be at least 3 characters long')
-        .required('*Sellers Name is required'),
       content: Yup.string()
         .trim()
         .min(6, '*About must be at least 6 characters long')
@@ -51,8 +53,8 @@ export const Sell = () => {
         .required('*Condition is required')
         .oneOf(['new', 'used'], '*Condition must be either "new" or "used"'),
     }),
-    onSubmit: (newProduct) => {
-      axiosNewProduct(newProduct);
+    onSubmit: (product) => {
+      initialValues ? axiosUpdateProduct(product) : axiosNewProduct(product);
     },
   });
 
@@ -64,21 +66,57 @@ export const Sell = () => {
         },
       })
       .then((res) => {
-        console.log(res.data);
+        const prodID = res.data.id;
+        navigate(`/product/${prodID}`);
         formik.resetForm();
-        console.log(res.data);
+        // state handling after new product created - updating DOM
         setProducts((prevState) => {
-          // from res add comm_id to new object - newComm
-          const newProduct = { id: res.data.id, ...data };
+          // update new product with id from res.data (db)
+          const newProduct = { id: prodID, ...data };
           // spread prev state and add to end newComm
           const newProductState = [...prevState, newProduct];
           return newProductState;
         });
-        navigate('/');
+
         addMsg('bg-green-200', 'Product added successfully');
       })
       .catch((error) => {
         console.warn('axiosLogin:', error);
+        addMsg('bg-red-200', `You need to login again`);
+        if (error.response.data === 'Unauthorized') {
+          logout();
+          navigate('/login');
+        }
+        const errorFromAPI = error.response.data;
+        formik.setErrors(errorFromAPI);
+      });
+  };
+
+  const axiosUpdateProduct = (data) => {
+    axios
+      .put(`${PRODUCTS_URL}/${id}`, data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        formik.resetForm();
+        navigate(-1);
+        // check if product matches with ID's, if so - updates with data, else return product
+        setProducts(
+          products.map((product) =>
+            product.id === data.id ? { ...product, ...data } : product,
+          ),
+        );
+        addMsg('bg-green-200', 'Product updated successfully');
+      })
+      .catch((error) => {
+        console.warn('axiosLogin:', error);
+        addMsg('bg-red-200', `${error.response.data}, you need to login again`);
+        if (error.response.data === 'Unauthorized') {
+          logout();
+          navigate('/login');
+        }
         const errorFromAPI = error.response.data;
         formik.setErrors(errorFromAPI);
       });
@@ -86,7 +124,9 @@ export const Sell = () => {
   return (
     <div className="flex md:p-20 items-center align-middle justify-center min-w-full min-h-full text-white">
       <div className="flex flex-col rounded-lg items-center bg-stone-800 justify-center align-middle mx-auto w-full max-w-md  px-12 py-14 shadow-sm min-h-full ">
-        <h1 className="mb-4 text-2xl text-center">Sell Item</h1>
+        <h1 className="mb-4 text-2xl text-center">
+          {initialValues ? 'Edit Product' : 'Sell Item'}
+        </h1>
         <form
           className="w-full flex flex-col justify-center items-center"
           onSubmit={formik.handleSubmit}
@@ -147,7 +187,7 @@ export const Sell = () => {
           <CustomFormik formik={formik} id={'p_condition'} />
 
           <CustomButton
-            text={'Publish'}
+            text={initialValues ? 'Update' : 'Publish'}
             css={
               'w-full text-white font-semibold bg-amber-500  hover:bg-amber-400'
             }
