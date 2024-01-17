@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { CommentsSection } from '../../comments/CommentsSection';
 import { useAuthContext } from '../../contexts/authContext';
+import { useProductsContext } from '../../contexts/productsContext';
 
 const PRODUCT_URL = 'http://localhost:3000/api/products';
 
@@ -10,6 +11,8 @@ export const SingleProductPage = () => {
   const [productFromAPI, setProductFromAPI] = useState(null);
   const { productID } = useParams();
   const { username, token } = useAuthContext();
+  const { products, setProducts } = useProductsContext();
+  products && console.log(products);
 
   const navigate = useNavigate();
 
@@ -43,6 +46,9 @@ export const SingleProductPage = () => {
       })
       .then((response) => {
         console.log('res: ', response.data.msg);
+        setProducts((prevS) =>
+          prevS.filter((prod) => prod.id !== productFromAPI.id),
+        );
         navigate('/');
       })
       .catch((error) => {

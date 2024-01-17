@@ -4,29 +4,18 @@ import { useAuthContext } from '../../contexts/authContext';
 import { CustomInput } from '../../forms/CustomInput';
 import { CustomButton } from '../../forms/CustomButton';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
 import { CustomRadio } from '../../forms/CustomRadio';
 import { CustomFormik } from '../../forms/CustomFormik';
+import { useProductsContext } from '../../contexts/productsContext';
+import { useNavigate } from 'react-router-dom';
 
 const PRODUCTS_URL = 'http://localhost:3000/api/products';
-const CATs_URL = 'http://localhost:3000/api/categories';
 
 export const Sell = () => {
   const { username, token } = useAuthContext();
-  const [cats, setCats] = useState(null);
+  const { cats, products } = useProductsContext();
 
-  // fetch categories from API
-  useEffect(() => {
-    axios
-      .get(CATs_URL)
-      .then((res) => {
-        setCats(res.data);
-        // console.log(res.data);
-      })
-      .catch((err) => {
-        console.warn('ERROR: ', err);
-      });
-  }, []);
+  const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
@@ -75,6 +64,7 @@ export const Sell = () => {
       .then((res) => {
         console.log(res.data);
         formik.resetForm();
+        navigate('/');
       })
       .catch((error) => {
         console.warn('axiosLogin:', error);
