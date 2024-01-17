@@ -8,12 +8,12 @@ import { MsgContextProvider } from './components/contexts/msgContext.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
-    <AuthCtxProvider>
-      <ProductsCtxProvider>
-        <MsgContextProvider>
+    <MsgContextProvider>
+      <AuthCtxProvider>
+        <ProductsCtxProvider>
           <App />
-        </MsgContextProvider>
-      </ProductsCtxProvider>
-    </AuthCtxProvider>
+        </ProductsCtxProvider>
+      </AuthCtxProvider>
+    </MsgContextProvider>
   </BrowserRouter>,
 );

@@ -47,7 +47,6 @@ export default function LogIn() {
           login(token, username);
           formik.resetForm();
           navigate(-1);
-          addMsg('bg-green-200', `${res.data.msg}`);
         }
       })
       .catch((error) => {

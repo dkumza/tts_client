@@ -1,51 +1,56 @@
 import { createContext, useContext, useState } from 'react';
+import { useMsgContext } from './msgContext';
 
 const AuthContext = createContext({
-   login() {},
-   logout() {},
-   isUserLoggedIn: false,
-   token: null,
-   username: '',
+  login() {},
+  logout() {},
+  isUserLoggedIn: false,
+  token: null,
+  username: '',
 });
 
 AuthContext.displayName = 'AuthCtx';
 
 export const AuthCtxProvider = ({ children }) => {
-   const tokenFromStorage = localStorage.getItem('session_token');
-   const usernameFromStorage = localStorage.getItem('session_username');
-   const [sessionToken, setSessionToken] = useState(tokenFromStorage || null);
-   const [username, setUserName] = useState(usernameFromStorage || '');
+  const tokenFromStorage = localStorage.getItem('session_token');
+  const usernameFromStorage = localStorage.getItem('session_username');
+  const [sessionToken, setSessionToken] = useState(tokenFromStorage || null);
+  const [username, setUserName] = useState(usernameFromStorage || '');
 
-   const isUserLoggedIn = !!sessionToken;
+  const { addMsg } = useMsgContext();
 
-   function login(token, username) {
-      setSessionToken(token);
-      setUserName(username);
-      localStorage.setItem('session_token', token);
-      localStorage.setItem('session_username', username);
-   }
+  const isUserLoggedIn = !!sessionToken;
 
-   function logout() {
-      console.log('logout');
-      setSessionToken(null);
-      setUserName('');
-      localStorage.removeItem('session_token');
-      localStorage.removeItem('session_username');
-   }
+  function login(token, username) {
+    setSessionToken(token);
+    setUserName(username);
+    localStorage.setItem('session_token', token);
+    localStorage.setItem('session_username', username);
+    addMsg('bg-green-200', 'Logged in successfully');
+  }
 
-   const ctxValues = {
-      token: sessionToken,
-      isUserLoggedIn,
-      login,
-      logout,
-      username,
-   };
+  function logout() {
+    console.log('logout');
+    setSessionToken(null);
+    setUserName('');
+    localStorage.removeItem('session_token');
+    localStorage.removeItem('session_username');
+    addMsg('bg-green-200', 'Logged out...');
+  }
 
-   return (
-      <AuthContext.Provider value={ctxValues}>{children}</AuthContext.Provider>
-   );
+  const ctxValues = {
+    token: sessionToken,
+    isUserLoggedIn,
+    login,
+    logout,
+    username,
+  };
+
+  return (
+    <AuthContext.Provider value={ctxValues}>{children}</AuthContext.Provider>
+  );
 };
 
 export function useAuthContext() {
-   return useContext(AuthContext);
+  return useContext(AuthContext);
 }
