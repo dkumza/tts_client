@@ -1,6 +1,5 @@
 import { Link, NavLink } from 'react-router-dom';
 import { useAuthContext } from '../contexts/authContext';
-import Search from '../forms/Search';
 
 export const Header = ({ setClickedMenu }) => {
   const { isUserLoggedIn, username } = useAuthContext();
@@ -25,21 +24,12 @@ export const Header = ({ setClickedMenu }) => {
           >
             LOGO
           </Link>
-          <Link className="menu">
-            <div className="m1">STORE</div>
-          </Link>
-          <Link className="menu">
-            <div className="m1">Support</div>
-          </Link>
-          <Link className="menu">
-            <div className="m1">About</div>
-          </Link>
-          <Link className="menu">
-            <div className="m1">More</div>
-          </Link>
+
+          <NavLink to={'/my-list'} className="menu px-4 py-1 rounded text-sm">
+            <div className="m1 uppercase">My Items</div>
+          </NavLink>
         </div>
 
-        {/* <Search /> */}
         {isUserLoggedIn ? (
           <div className="flex align-middle justify-center items-center  h-full gap-6 text-sm">
             <Link

@@ -14,7 +14,7 @@ const PRODUCTS_URL = 'http://localhost:3000/api/products';
 
 export const Sell = () => {
   const { username, token, logout } = useAuthContext();
-  const { cats, products, setProducts, initialValues, setInitialValues } =
+  const { cats, setProducts, initialValues, setInitialValues } =
     useProductsContext();
   const { addMsg } = useMsgContext();
 
@@ -105,13 +105,6 @@ export const Sell = () => {
       .then((res) => {
         setInitialValues(null);
         navigate(`/product/${id}`);
-        // navigate('/');
-        // check if product matches with ID's, if so - updates with data, else return product
-        // setProducts(
-        //   products.map((product) =>
-        //     product.id === data.id ? { ...product, ...data } : product,
-        //   ),
-        // );
         addMsg('bg-green-200', 'Product updated successfully');
       })
       .catch((error) => {

@@ -7,7 +7,6 @@ export const ProductsList = () => {
 
   return (
     <div className="container mx-auto flex gap-4 px-12">
-      {/* <h1 className="py-4 px-3">All items</h1> */}
       <ul className="flex gap-4 pb-4 flex-col max-w-[970px] min-w-[1170px] justify-center items-center">
         {products &&
           products.map((product) => (

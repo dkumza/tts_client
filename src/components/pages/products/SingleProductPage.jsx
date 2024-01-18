@@ -13,7 +13,7 @@ export const SingleProductPage = () => {
   const [productFromAPI, setProductFromAPI] = useState(null);
   const { productID } = useParams();
   const { username, token, logout } = useAuthContext();
-  const { products, handleEditProduct, setProducts } = useProductsContext();
+  const { handleEditProduct, setProducts } = useProductsContext();
   const [del, setDel] = useState(false);
   const { addMsg } = useMsgContext();
 
@@ -56,7 +56,6 @@ export const SingleProductPage = () => {
         addMsg('bg-green-200', `${response.data.msg}`);
       })
       .catch((error) => {
-        console.log(error);
         addMsg('bg-red-200', `You need to login again`);
         if (error.response.data === 'Unauthorized') {
           logout();

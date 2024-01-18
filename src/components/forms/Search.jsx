@@ -1,7 +1,6 @@
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
-import { CustomFormik } from './CustomFormik';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 const Search = () => {
   const history = useNavigate();

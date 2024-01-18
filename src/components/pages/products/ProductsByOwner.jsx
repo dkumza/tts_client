@@ -1,36 +1,34 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
 import { SingleProduct } from './SingleProduct';
-import { RightMenu } from '../../menus/RightMenu';
+import { useAuthContext } from '../../contexts/authContext';
 
-const BY_CAT_URL = 'http://localhost:3000/api/products/category';
+const BY_USERNAME_URL = 'http://localhost:3000/api/owner';
 
-export const ProductsByCategoryList = () => {
-  const [productsByCat, setProductsByCat] = useState(null);
-  const { catID } = useParams();
+export const ProductsByOwner = () => {
+  const { username } = useAuthContext();
+  const [productsByOwner, setProductsByOwner] = useState(null);
 
   useEffect(() => {
-    // TODO token
     axios
-      .get(`${BY_CAT_URL}/${catID}`)
+      .get(`${BY_USERNAME_URL}/${username}`)
       .then((response) => {
-        setProductsByCat(response.data);
+        setProductsByOwner(response.data);
       })
       .catch((error) => {
         console.log('error ===', error);
       });
-  }, [catID]);
+  }, [username]);
 
   return (
     <div className="container mx-auto flex gap-4 px-12">
       <ul className="flex gap-4 pb-4 flex-col max-w-[970px] min-w-[1170px] items-center">
-        {productsByCat &&
-          productsByCat.map((product) => (
+        {productsByOwner &&
+          productsByOwner.map((product) => (
             <SingleProduct key={product.id} product={product} />
           ))}
       </ul>
-      <RightMenu />
     </div>
   );
 };

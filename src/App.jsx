@@ -13,6 +13,7 @@ import { useState } from 'react';
 import Search from './components/forms/Search';
 import { ProductsBySearchList } from './components/pages/products/ProductsBySearchList';
 import { CustomMsg } from './components/forms/CustomMsg';
+import { ProductsByOwner } from './components/pages/products/ProductsByOwner';
 
 function App() {
   const { isUserLoggedIn } = useAuthContext();
@@ -52,6 +53,10 @@ function App() {
         <Route
           path="/login"
           element={isUserLoggedIn ? <ProductsList /> : <LogIn />}
+        />
+        <Route
+          path="/my-list"
+          element={isUserLoggedIn ? <ProductsByOwner /> : <LogIn />}
         />
         <Route
           path="/signup"

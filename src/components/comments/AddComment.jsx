@@ -8,12 +8,7 @@ import { useMsgContext } from '../contexts/msgContext';
 
 const COMM_URL = 'http://localhost:3000/api/comments/product';
 
-export const AddComment = ({
-  setComment,
-  productID,
-  setDataFromAPi,
-  handleComment,
-}) => {
+export const AddComment = ({ productID, setDataFromAPi, handleComment }) => {
   const { username, token } = useAuthContext();
   const { addMsg } = useMsgContext();
 
@@ -44,7 +39,8 @@ export const AddComment = ({
       })
       .then((res) => {
         console.log(res.data);
-        // creates a new [array] with all the previous comments (prevState), updates comm_id with responded ID from DB and adds the new comment at the end (...data)
+        // creates a new [array] with all the previous comments (prevState),
+        // updates comm_id with responded ID from DB and adds the new comment at the end (...data)
         setDataFromAPi((prevState) => [
           ...prevState,
           { comm_id: res.data.comm_id, ...data },

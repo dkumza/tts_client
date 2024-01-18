@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useAPiData } from '../../hooks/useAPiData';
 import { SingleComment } from './SingleComment';
-import { Sell } from '../pages/sell/Sell';
 import { AddComment } from './AddComment';
 import { useAuthContext } from '../contexts/authContext';
 import { useState } from 'react';

@@ -50,14 +50,12 @@ export default function SignUp() {
     axios
       .post(REG_URL, signUpInfo)
       .then((res) => {
-        console.log('res ===', res);
         res.status === 201 ? addMsg('bg-green-200', res.data.msg) : null;
         formik.resetForm();
       })
       .catch((error) => {
         const newErr = error.response.data;
         addMsg('bg-red-200', newErr.msg);
-        console.warn('axiosLogin:', newErr);
         const errorFromAPI = newErr.msg;
         formik.setErrors(errorFromAPI);
       });
@@ -72,7 +70,6 @@ export default function SignUp() {
         <h1 className="mb-4 text-2xl">Sign up</h1>
         <form onSubmit={formik.handleSubmit} className="w-full ">
           <CustomInput
-            // focus={autoFocus}
             css={'w-full'}
             formik={formik}
             type={'text'}

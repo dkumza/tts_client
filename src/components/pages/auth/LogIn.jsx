@@ -48,36 +48,11 @@ export default function LogIn() {
         }
       })
       .catch((error) => {
-        // console.warn('axiosLogin:', error);
         addMsg('bg-red-200', `${error.response.data.error}`);
         const errorFromAPI = error.response.data;
         formik.setErrors(errorFromAPI);
       });
   };
-
-  // const [authState, setAuthState] = useState({
-  //    email: 'james@secure.com',
-  //    password: '123456',
-  // });
-
-  // /**
-  //  * function to enter input values to state
-  //  * @param {*} event
-  //  */
-  // function handleInput(event) {
-  //    const { name, value } = event.target;
-  //    console.log('name ===', name);
-  //    setAuthState({ ...authState, [name]: value });
-  // }
-
-  // /** jsdoc
-  //  *
-  //  * @param {SubmitEvent} event
-  //  */
-  // function handleLogin(event) {
-  //    event.preventDefault();
-  //    console.log('js in control');
-  // }
 
   return (
     <div className="flex md:p-20 items-center align-middle justify-center min-w-full min-h-full text-white">

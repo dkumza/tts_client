@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 .active {
-   @apply bg-stone-200;
+   @apply bg-stone-100 text-black
 }
 
 @layer base {

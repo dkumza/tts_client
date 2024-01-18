@@ -1,35 +1,8 @@
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 export const RightMenu = () => {
   return (
     <div className="flex flex-col gap-8 w-full h-fit p-6 text-left bg-stone-100 rounded">
-      {/* <div className="flex flex-col gap-2 justify-start items-start w-full"> */}
-      {/* <h1 className="font-semibold w-full">Sort</h1> */}
-      {/* <Link
-               // to={'/products/category/1'}
-               className=" hover:bg-stone-300 px-3 py-1 rounded w-full"
-            >
-               Reset
-            </Link> */}
-      {/* <NavLink
-          to={'/'}
-          className=" hover:bg-stone-300 px-3 py-1 rounded w-full"
-        >
-          By Latest
-        </NavLink>
-        <Link
-          // to={'/products/category/1'}
-          className=" hover:bg-stone-300 px-3 py-1 rounded w-full"
-        >
-          By Title A-Z
-        </Link>
-        <Link
-          // to={'/products/category/1'}
-          className=" hover:bg-stone-300 px-3 py-1 rounded w-full"
-        >
-          By Price 0-9
-        </Link> */}
-      {/* </div> */}
       <div className="flex flex-col text-left gap-1 text-md text-stone-600">
         <h1 className="font-semibold text-base text-black">
           Filter by Categories
