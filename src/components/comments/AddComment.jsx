@@ -5,12 +5,15 @@ import { CustomFormik } from '../forms/CustomFormik';
 import { CustomButton } from '../forms/CustomButton';
 import axios from 'axios';
 import { useMsgContext } from '../contexts/msgContext';
+import { useNavigate } from 'react-router-dom';
 
 const COMM_URL = 'http://localhost:3000/api/comments/product';
 
 export const AddComment = ({ productID, setDataFromAPi, handleComment }) => {
-  const { username, token } = useAuthContext();
+  const { username, token, logout } = useAuthContext();
   const { addMsg } = useMsgContext();
+
+  const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
@@ -41,16 +44,18 @@ export const AddComment = ({ productID, setDataFromAPi, handleComment }) => {
         console.log(res.data);
         // creates a new [array] with all the previous comments (prevState),
         // updates comm_id with responded ID from DB and adds the new comment at the end (...data)
-        setDataFromAPi((prevState) => [
-          ...prevState,
-          { comm_id: res.data.comm_id, ...data },
-        ]);
+        setDataFromAPi((prevState) => [...prevState, { comm_id: res.data.comm_id, ...data }]);
         formik.resetForm();
         addMsg('bg-green-200', `${res.data.msg}`);
         handleComment();
       })
       .catch((error) => {
-        console.warn('axiosLogin:', error);
+        // console.warn('axiosLogin:', error);
+        if (error.response.data === 'Unauthorized') {
+          logout();
+          navigate('/login');
+          addMsg('bg-red-200', `${error.response.data}, you need to login again`);
+        }
         const errorFromAPI = error.response.data;
         formik.setErrors(errorFromAPI);
       });
