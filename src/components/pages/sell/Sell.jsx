@@ -187,17 +187,16 @@ export const Sell = () => {
             type={'submit'}
           />
         </form>
-        {initialValues && (
-          <button
-            onClick={() => {
-              setInitialValues(null);
-              navigate(-1);
-            }}
-            className=""
-          >
-            Cancel
-          </button>
-        )}
+
+        <button
+          onClick={() => {
+            setInitialValues(null);
+            navigate(-1);
+          }}
+          className=""
+        >
+          Cancel
+        </button>
       </div>
     </div>
   );
