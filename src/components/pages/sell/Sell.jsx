@@ -104,13 +104,14 @@ export const Sell = () => {
       })
       .then((res) => {
         setInitialValues(null);
-        navigate(-1);
+        navigate(`/product/${id}`);
+        // navigate('/');
         // check if product matches with ID's, if so - updates with data, else return product
-        setProducts(
-          products.map((product) =>
-            product.id === data.id ? { ...product, ...data } : product,
-          ),
-        );
+        // setProducts(
+        //   products.map((product) =>
+        //     product.id === data.id ? { ...product, ...data } : product,
+        //   ),
+        // );
         addMsg('bg-green-200', 'Product updated successfully');
       })
       .catch((error) => {
@@ -124,7 +125,7 @@ export const Sell = () => {
         formik.setErrors(errorFromAPI);
       });
   };
-  console.log(products);
+
   return (
     <div className="flex md:p-20 items-center align-middle justify-center min-w-full min-h-full text-white">
       <div className="flex flex-col rounded-lg items-center bg-stone-800 justify-center align-middle mx-auto w-full max-w-md  px-12 py-14 shadow-sm min-h-full ">

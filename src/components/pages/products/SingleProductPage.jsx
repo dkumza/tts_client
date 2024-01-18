@@ -99,7 +99,7 @@ export const SingleProductPage = () => {
                 {username === productFromAPI.username && (
                   <div className="flex gap-2">
                     <div
-                      onClick={() => handleEditProduct(productFromAPI.id)}
+                      onClick={() => handleEditProduct(productFromAPI)}
                       className="price text-xl font-semibold px-6 py-2 rounded text-white bg-sky-400 hover:bg-sky-600 hover:cursor-pointer hover:text-amber-400"
                     >
                       EDIT

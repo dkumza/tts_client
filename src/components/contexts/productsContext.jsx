@@ -48,10 +48,9 @@ export const ProductsCtxProvider = ({ children }) => {
       });
   }, []);
 
-  const handleEditProduct = (id) => {
-    const foundP = products.find((p) => p.id === id);
-    // remove data from product
-    const { date, ...rest } = foundP;
+  const handleEditProduct = (product) => {
+    // remove specified data from product
+    const { date, ...rest } = product;
     setInitialValues(rest);
     navigate('/sell');
   };

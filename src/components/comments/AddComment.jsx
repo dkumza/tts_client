@@ -44,13 +44,11 @@ export const AddComment = ({
       })
       .then((res) => {
         console.log(res.data);
-        setDataFromAPi((prevState) => {
-          // from res add comm_id to new object - newComm
-          const newComm = { comm_id: res.data.comm_id, ...data };
-          // spread prev state and add to end newComm
-          const newCommState = [...prevState, newComm];
-          return newCommState;
-        });
+        // creates a new [array] with all the previous comments (prevState), updates comm_id with responded ID from DB and adds the new comment at the end (...data)
+        setDataFromAPi((prevState) => [
+          ...prevState,
+          { comm_id: res.data.comm_id, ...data },
+        ]);
         formik.resetForm();
         addMsg('bg-green-200', `${res.data.msg}`);
         handleComment();
