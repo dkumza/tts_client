@@ -161,16 +161,7 @@ export const SingleProductPage = () => {
                 <h1 className="font-semibold py-2">
                   Product information from seller
                 </h1>
-                <p className="bg-white p-4 text-sm">
-                  {/* {productFromAPI.content} */}
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Molestias error adipisci possimus sequi itaque dolorum eveniet
-                  sed doloremque sunt autem culpa ullam repellat provident,
-                  laboriosam quibusdam impedit nemo repellendus consequuntur
-                  asperiores dolor eum, dolores quo voluptate libero! Mollitia
-                  eius soluta molestias rem impedit dolore, sunt saepe
-                  laudantium, sequi, voluptatem ipsam?
-                </p>
+                <p className="bg-white p-4 text-sm">{productFromAPI.content}</p>
               </div>
             </div>
           </div>

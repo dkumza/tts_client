@@ -45,6 +45,7 @@ export const CommentsSection = ({ productID }) => {
       </div>
       {comment && (
         <AddComment
+          handleComment={handleComment}
           setComment={setComment}
           productID={productID}
           setDataFromAPi={setDataFromAPi}

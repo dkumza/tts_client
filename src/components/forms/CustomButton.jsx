@@ -1,7 +1,7 @@
 export const CustomButton = ({ css, text, type }) => {
-   return (
-      <button type={type} className={`${css} py-2 mb-4 rounded`}>
-         {text}
-      </button>
-   );
+  return (
+    <button type={type} className={`${css} py-2 mb-4 rounded`}>
+      {text}
+    </button>
+  );
 };

@@ -8,7 +8,12 @@ import { useMsgContext } from '../contexts/msgContext';
 
 const COMM_URL = 'http://localhost:3000/api/comments/product';
 
-export const AddComment = ({ setComment, productID, setDataFromAPi }) => {
+export const AddComment = ({
+  setComment,
+  productID,
+  setDataFromAPi,
+  handleComment,
+}) => {
   const { username, token } = useAuthContext();
   const { addMsg } = useMsgContext();
 
@@ -48,6 +53,7 @@ export const AddComment = ({ setComment, productID, setDataFromAPi }) => {
         });
         formik.resetForm();
         addMsg('bg-green-200', `${res.data.msg}`);
+        handleComment();
       })
       .catch((error) => {
         console.warn('axiosLogin:', error);

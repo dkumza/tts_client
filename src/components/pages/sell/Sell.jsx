@@ -14,13 +14,16 @@ const PRODUCTS_URL = 'http://localhost:3000/api/products';
 
 export const Sell = () => {
   const { username, token, logout } = useAuthContext();
-  const { cats, products, setProducts, initialValues } = useProductsContext();
+  const { cats, products, setProducts, initialValues, setInitialValues } =
+    useProductsContext();
   const { addMsg } = useMsgContext();
 
   let id;
   if (initialValues) {
     ({ id } = initialValues);
   }
+
+  console.log(initialValues);
 
   const navigate = useNavigate();
 
@@ -100,7 +103,7 @@ export const Sell = () => {
         },
       })
       .then((res) => {
-        formik.resetForm();
+        setInitialValues(null);
         navigate(-1);
         // check if product matches with ID's, if so - updates with data, else return product
         setProducts(
@@ -121,6 +124,7 @@ export const Sell = () => {
         formik.setErrors(errorFromAPI);
       });
   };
+  console.log(products);
   return (
     <div className="flex md:p-20 items-center align-middle justify-center min-w-full min-h-full text-white">
       <div className="flex flex-col rounded-lg items-center bg-stone-800 justify-center align-middle mx-auto w-full max-w-md  px-12 py-14 shadow-sm min-h-full ">
@@ -194,6 +198,17 @@ export const Sell = () => {
             type={'submit'}
           />
         </form>
+        {initialValues && (
+          <button
+            onClick={() => {
+              setInitialValues(null);
+              navigate(-1);
+            }}
+            className=""
+          >
+            Cancel
+          </button>
+        )}
       </div>
     </div>
   );
