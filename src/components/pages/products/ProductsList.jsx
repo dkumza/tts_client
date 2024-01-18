@@ -9,9 +9,7 @@ export const ProductsList = () => {
     <div className="container mx-auto flex gap-4 px-12">
       <ul className="flex gap-4 pb-4 flex-col max-w-[970px] min-w-[1170px] justify-center items-center">
         {products &&
-          products.map((product) => (
-            <SingleProduct key={product.id} product={product} />
-          ))}
+          products.map((product) => <SingleProduct key={product.id} product={product} />)}
       </ul>
       <RightMenu />
     </div>

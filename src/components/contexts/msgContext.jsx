@@ -23,9 +23,7 @@ export const MsgContextProvider = ({ children }) => {
     messages,
     addMsg,
   };
-  return (
-    <MsgContext.Provider value={msgCtxValues}>{children}</MsgContext.Provider>
-  );
+  return <MsgContext.Provider value={msgCtxValues}>{children}</MsgContext.Provider>;
 };
 
 export function useMsgContext() {
