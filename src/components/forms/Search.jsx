@@ -34,10 +34,7 @@ const Search = () => {
           placeholder="Search for products"
         />
 
-        <button
-          type="submit"
-          className=" rounded px-4 py-2 hover:cursor-pointer"
-        >
+        <button type="submit" className=" rounded px-4 py-2 hover:cursor-pointer">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="14"

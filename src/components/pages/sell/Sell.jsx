@@ -14,16 +14,13 @@ const PRODUCTS_URL = 'http://localhost:3000/api/products';
 
 export const Sell = () => {
   const { username, token, logout } = useAuthContext();
-  const { cats, setProducts, initialValues, setInitialValues } =
-    useProductsContext();
+  const { cats, setProducts, initialValues, setInitialValues } = useProductsContext();
   const { addMsg } = useMsgContext();
 
   let id;
   if (initialValues) {
     ({ id } = initialValues);
   }
-
-  console.log(initialValues);
 
   const navigate = useNavigate();
 
@@ -32,7 +29,7 @@ export const Sell = () => {
     cat_id: 0,
     content: '',
     username,
-    price: '',
+    price: 0,
     p_condition: '',
   };
 
@@ -84,11 +81,11 @@ export const Sell = () => {
         addMsg('bg-green-200', 'Product added successfully');
       })
       .catch((error) => {
-        console.warn('axiosLogin:', error);
-        addMsg('bg-red-200', `You need to login again`);
+        // console.warn('axiosLogin:', error);
         if (error.response.data === 'Unauthorized') {
           logout();
           navigate('/login');
+          addMsg('bg-red-200', `You need to login again`);
         }
         const errorFromAPI = error.response.data;
         formik.setErrors(errorFromAPI);
@@ -109,10 +106,10 @@ export const Sell = () => {
       })
       .catch((error) => {
         console.warn('axiosLogin:', error);
-        addMsg('bg-red-200', `${error.response.data}, you need to login again`);
         if (error.response.data === 'Unauthorized') {
           logout();
           navigate('/login');
+          addMsg('bg-red-200', `${error.response.data}, you need to login again`);
         }
         const errorFromAPI = error.response.data;
         formik.setErrors(errorFromAPI);
@@ -186,9 +183,7 @@ export const Sell = () => {
 
           <CustomButton
             text={initialValues ? 'Update' : 'Publish'}
-            css={
-              'w-full text-white font-semibold bg-amber-500  hover:bg-amber-400'
-            }
+            css={'w-full text-white font-semibold bg-amber-500  hover:bg-amber-400'}
             type={'submit'}
           />
         </form>
