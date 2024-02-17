@@ -76,9 +76,7 @@ export default function LogIn() {
           />
           <CustomButton
             text={'Sign In'}
-            css={
-              'w-full text-white font-semibold bg-amber-500  hover:bg-amber-400'
-            }
+            css={'w-full text-white font-semibold bg-amber-500  hover:bg-amber-400'}
             type={'submit'}
           />
           <div className="flex justify-center mb-3">OR</div>
